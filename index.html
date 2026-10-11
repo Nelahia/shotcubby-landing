@@ -3,8 +3,8 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>ShotNest — Shot. Kept.</title>
-<meta name="description" content="ShotNest catches every macOS screenshot — full screen, selection, or clipboard — and files it in one folder before it ever touches your Desktop.">
+<title>ShotCubby — Shot. Kept.</title>
+<meta name="description" content="ShotCubby catches every screenshot on macOS and Windows, files it in one folder, and lets you find any of them in two keystrokes.">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%230C1216'/%3E%3Cg transform='translate(4 4)' fill='none' stroke='%23F4FBFC' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath stroke-width='2' d='M3 8V5.5A2.5 2.5 0 0 1 5.5 3H8M16 3h2.5A2.5 2.5 0 0 1 21 5.5V8M21 16v2.5a2.5 2.5 0 0 1-2.5 2.5H16M8 21H5.5A2.5 2.5 0 0 1 3 18.5V16'/%3E%3Cpath stroke-width='1.75' d='M9.5 7.25h5'/%3E%3C/g%3E%3Crect x='11' y='13.75' width='10' height='7.25' rx='1.75' fill='%23F4FBFC'/%3E%3C/svg%3E">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -27,8 +27,6 @@ a{color:inherit;text-decoration:none}a:hover{color:inherit}
 @media(max-width:720px){.nl{display:none}}
 .bp{display:inline-flex;align-items:center;justify-content:center;gap:8px;height:44px;padding:0 20px;border-radius:10px;background:#F1F5F7;color:#0A0D0F;font-weight:600;font-size:15px}
 .bp:hover{background:#FFFFFF;color:#0A0D0F}
-.bs{display:inline-flex;align-items:center;justify-content:center;gap:8px;height:44px;padding:0 18px;border-radius:10px;background:#161C20;box-shadow:inset 0 0 0 1px rgba(255,255,255,.12);font-weight:600;font-size:15px}
-.bs:hover{background:#1F272C}
 .cb{position:absolute;width:20px;height:20px;border:2px solid #35D6E6}
 .th{position:relative;aspect-ratio:16/10;border-radius:7px;box-shadow:inset 0 0 0 1px rgba(255,255,255,.08);overflow:hidden}
 .k0{background:linear-gradient(rgba(255,255,255,.09),rgba(255,255,255,.09)) 0 0/100% 12px no-repeat,linear-gradient(rgba(255,255,255,.09),rgba(255,255,255,.09)) 12px 26px/52% 6px no-repeat,linear-gradient(rgba(255,255,255,.09),rgba(255,255,255,.09)) 12px 40px/74% 6px no-repeat,#232C32}
@@ -64,10 +62,13 @@ a{color:inherit;text-decoration:none}a:hover{color:inherit}
 .spv{flex:1 1 280px;min-width:0;padding:16px;display:flex;flex-direction:column;gap:12px;border-left:1px solid rgba(255,255,255,.08)}
 .spl{flex:0 0 290px}
 @media(max-width:640px){.spv{display:none}.spl{flex:1 1 auto}}
+.os-mac .w,.os-win .m{display:none !important}
+.lp .os{height:30px;padding:0 16px;border-radius:7px;font-size:13px;font-weight:600;color:#9AA8B1}
+.lp .os.on{background:#F1F5F7;color:#0A0D0F}
 </style>
 </head>
 <body>
-<div class="lp" style="background: #0A0D0F; color: #F1F5F7; font-family: 'IBM Plex Sans', sans-serif; font-size: 16px; line-height: 1.5; padding: 0 20px">
+<div class="lp os-mac" style="background: #0A0D0F; color: #F1F5F7; font-family: 'IBM Plex Sans', sans-serif; font-size: 16px; line-height: 1.5; padding: 0 20px">
 <div style="max-width: 1080px; margin: 0 auto; display: flex; flex-direction: column">
 
 <div style="display: flex; align-items: center; justify-content: space-between; gap: 16px; padding: 18px 0">
@@ -75,21 +76,24 @@ a{color:inherit;text-decoration:none}a:hover{color:inherit}
 <div style="width: 30px; height: 30px; border-radius: 7px; background: #1A2126; box-shadow: inset 0 0 0 1px rgba(255,255,255,.1); color: #F4FBFC; display: flex; align-items: center; justify-content: center">
 <svg viewBox="0 0 24 24" style="width: 20px; height: 20px"><path class="gs" d="M3 8V5.5A2.5 2.5 0 0 1 5.5 3H8M16 3h2.5A2.5 2.5 0 0 1 21 5.5V8M21 16v2.5a2.5 2.5 0 0 1-2.5 2.5H16M8 21H5.5A2.5 2.5 0 0 1 3 18.5V16"></path><path class="gs gt" d="M9.5 7.25h5"></path><rect class="gf" x="7" y="9.75" width="10" height="7.25" rx="1.75"></rect></svg>
 </div>
-<div class="disp" style="font-size: 20px">ShotNest</div>
+<div class="disp" style="font-size: 20px">ShotCubby</div>
 </a>
-<div class="nl"><a href="#search">Search</a><a href="#popover">Popover</a><a href="#shortcuts">Shortcuts</a><a href="#features">Features</a><a href="#install">Install</a><a href="https://github.com/Nelahia/shotnest">GitHub</a></div>
-<a class="bp" style="height: 36px; font-size: 14px; padding: 0 14px" href="https://github.com/Nelahia/shotnest/releases/latest/download/ShotNest.dmg">Download</a>
+<div class="nl"><a href="#search">Search</a><a href="#popover">Popover</a><a href="#shortcuts">Shortcuts</a><a href="#features">Features</a><a href="#install">Install</a><a href="https://github.com/Nelahia/shotcubby">GitHub</a></div>
+<a class="m bp" style="height: 36px; font-size: 14px; padding: 0 14px" href="https://github.com/Nelahia/shotcubby/releases/latest/download/ShotCubby.dmg">Download</a>
+<a class="w bp" style="height: 36px; font-size: 14px; padding: 0 14px" href="https://github.com/Nelahia/shotcubby/releases/latest">Download</a>
 </div>
 
 <div id="top" style="display: flex; flex-direction: column; align-items: center; text-align: center; gap: 22px; padding: 72px 0 48px">
-<div class="mono" style="font-size: 13px; color: #9AA8B1; background: #12171A; box-shadow: inset 0 0 0 1px rgba(255,255,255,.1); border-radius: 999px; padding: 6px 14px"><span id="version-badge" style="color: #35D6E6">v2.2.1</span> · signed and notarized</div>
+<div class="mono" style="font-size: 13px; color: #9AA8B1; background: #12171A; box-shadow: inset 0 0 0 1px rgba(255,255,255,.1); border-radius: 999px; padding: 6px 14px"><span id="version-badge" style="color: #35D6E6">v2.2.13</span> <span class="m">· signed and notarized</span><span class="w">· now on Windows</span></div>
 <h1 class="disp" style="margin: 0; font-size: clamp(60px, 11vw, 128px)">Shot. <span style="color: #6F7D87">Kept.</span></h1>
-<p style="margin: 0; font-size: 19px; color: #9AA8B1; max-width: 52ch">ShotNest sits in your menu bar and catches every screenshot macOS takes, whether full screen, selection or clipboard. Each one is filed in one folder before it touches your Desktop, and any of them is two keystrokes away.</p>
+<p style="margin: 0; font-size: 19px; color: #9AA8B1; max-width: 52ch">ShotCubby sits in your <span class="m">menu bar</span><span class="w">system tray</span> and catches every screenshot <span class="m">macOS takes, whether full screen, selection or clipboard</span><span class="w">you take, full screen or selection</span>. Each one is filed in one folder before it touches your Desktop, and any of them is two keystrokes away.</p>
+<div style="display: flex; gap: 2px; padding: 2px; background: #12171A; border-radius: 9px; box-shadow: inset 0 0 0 1px rgba(255,255,255,.1)"><button class="os on" data-os="mac" type="button">macOS</button><button class="os" data-os="win" type="button">Windows</button></div>
 <div style="display: flex; flex-wrap: wrap; justify-content: center; gap: 10px; padding-top: 6px">
-<a class="bp" href="https://github.com/Nelahia/shotnest/releases/latest/download/ShotNest.dmg">Download ShotNest.dmg</a>
-<a class="bs" href="#install">Install with Homebrew</a>
+<a class="m bp" href="https://github.com/Nelahia/shotcubby/releases/latest/download/ShotCubby.dmg">Download ShotCubby.dmg</a>
+<a class="w bp" href="https://github.com/Nelahia/shotcubby/releases/latest">Download for Windows</a>
 </div>
-<div class="mono" style="font-size: 13px; color: #7C8A94">macOS 14.0+ · free and open source · no telemetry</div>
+<div class="m mono" style="font-size: 13px; color: #7C8A94">macOS 14.0+ · free · no telemetry</div>
+<div class="w mono" style="font-size: 13px; color: #7C8A94">Windows · free · no telemetry</div>
 </div>
 
 <div id="search" style="position: relative; padding: 14px; width: 100%; max-width: 748px; box-sizing: border-box; margin: 0 auto 18px">
@@ -117,21 +121,21 @@ a{color:inherit;text-decoration:none}a:hover{color:inherit}
 </div>
 </div>
 <div style="display: flex; flex-wrap: wrap; align-items: center; gap: 6px 16px; padding: 9px 16px; border-top: 1px solid rgba(255,255,255,.08); font-size: 12px; color: #9AA8B1">
-<span><span class="kbd" style="font-size: 11px; padding: 1px 5px">↩</span>&nbsp; Copy</span>
-<span><span class="kbd" style="font-size: 11px; padding: 1px 5px">⌘↩</span>&nbsp; Open</span>
-<span><span class="kbd" style="font-size: 11px; padding: 1px 5px">⌘R</span>&nbsp; Reveal</span>
-<span><span class="kbd" style="font-size: 11px; padding: 1px 5px">⌘⌫</span>&nbsp; Trash</span>
+<span><span class="kbd" style="font-size: 11px; padding: 1px 5px">↩</span>&nbsp; Preview</span>
+<span><span class="kbd" style="font-size: 11px; padding: 1px 5px"><span class="m">⌘C</span><span class="w">Ctrl C</span></span>&nbsp; Copy</span>
+<span><span class="kbd" style="font-size: 11px; padding: 1px 5px"><span class="m">⌘R</span><span class="w">Ctrl R</span></span>&nbsp; Reveal</span>
+<span><span class="kbd" style="font-size: 11px; padding: 1px 5px"><span class="m">⌘⌫</span><span class="w">Ctrl ⌫</span></span>&nbsp; Trash</span>
 <span style="margin-left: auto"><span class="kbd" style="font-size: 11px; padding: 1px 5px">esc</span>&nbsp; Close</span>
 </div>
 </div>
 </div>
-<div style="text-align: center; font-size: 14px; line-height: 2; color: #9AA8B1; max-width: 620px; margin: 0 auto; padding: 0 0 104px">Press <span class="kbd">⌃</span> <span class="kbd">,</span> in any app and this panel opens in the middle of your screen. Try it here: type a name, move with ↑ ↓. The shortcut can be changed in Settings.</div>
+<div style="text-align: center; font-size: 14px; line-height: 2; color: #9AA8B1; max-width: 620px; margin: 0 auto; padding: 0 0 104px">Press <span class="kbd"><span class="m">⌘</span><span class="w">Ctrl</span></span> <span class="kbd">/</span> in any app and this panel opens in the middle of your screen. Type a name, then <span class="kbd"><span class="m">⌘</span><span class="w">Ctrl</span></span> <span class="kbd">C</span> copies the image and <span class="kbd">↩</span> opens it. Try it here. The shortcut can be changed in Settings.</div>
 
 <div id="popover" style="display: flex; flex-direction: column; align-items: center; gap: 32px; padding: 0 0 104px">
 <div style="display: flex; flex-direction: column; align-items: center; text-align: center; gap: 12px; max-width: 640px">
-<div class="eye">In your menu bar</div>
+<div class="eye">In your <span class="m">menu bar</span><span class="w">system tray</span></div>
 <h2 class="disp" style="margin: 0; font-size: clamp(32px, 4.6vw, 50px)">Every shot, one click away.</h2>
-<p style="margin: 0; color: #9AA8B1">Click the menu bar icon to see your latest captures. Click a name to rename it, and the file in the folder is renamed with it.</p>
+<p style="margin: 0; color: #9AA8B1">Click the <span class="m">menu bar</span><span class="w">tray</span> icon to see your latest captures. Click a name to rename it, and the file in the folder is renamed with it.</p>
 </div>
 <div style="align-self: stretch">
 <div style="position: relative; padding: 14px; margin-bottom: 14px">
@@ -149,7 +153,7 @@ a{color:inherit;text-decoration:none}a:hover{color:inherit}
 <div style="display: flex; align-items: center; gap: 12px; padding: 11px 12px; background: #1E262B; border-bottom: 1px solid rgba(255,255,255,.07)">
 <div style="display: flex; gap: 7px"><div style="width: 11px; height: 11px; border-radius: 50%; background: #3A454C"></div><div style="width: 11px; height: 11px; border-radius: 50%; background: #3A454C"></div><div style="width: 11px; height: 11px; border-radius: 50%; background: #3A454C"></div></div>
 <svg class="i" viewBox="0 0 24 24" style="color: #9AA8B1"><path d="M3.5 7a2 2 0 0 1 2-2h3.5l2 2h7.5a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2h-13a2 2 0 0 1-2-2z"></path></svg>
-<div style="font-weight: 600">ShotNest</div>
+<div style="font-weight: 600">ShotCubby</div>
 </div>
 <div style="display: flex; flex-direction: column">
 <div class="fr">
@@ -179,7 +183,7 @@ a{color:inherit;text-decoration:none}a:hover{color:inherit}
 <div style="flex: 0 1 350px; min-width: 260px; background: #14191D; border-radius: 14px; box-shadow: 0 0 0 1px rgba(255,255,255,.12), 0 24px 48px -16px rgba(0,0,0,.8); overflow: hidden">
 <div style="display: flex; align-items: center; gap: 8px; padding: 12px 14px">
 <svg viewBox="0 0 24 24" style="width: 18px; height: 18px"><path class="gs" d="M3 8V5.5A2.5 2.5 0 0 1 5.5 3H8M16 3h2.5A2.5 2.5 0 0 1 21 5.5V8M21 16v2.5a2.5 2.5 0 0 1-2.5 2.5H16M8 21H5.5A2.5 2.5 0 0 1 3 18.5V16"></path><path class="gs gt" d="M9.5 7.25h5"></path><rect class="gf" x="7" y="9.75" width="10" height="7.25" rx="1.75"></rect></svg>
-<div style="font-weight: 600; font-size: 14px">ShotNest</div>
+<div style="font-weight: 600; font-size: 14px">ShotCubby</div>
 <div class="mono" style="font-size: 11px; color: #9AA8B1; background: rgba(255,255,255,.1); border-radius: 999px; padding: 2px 8px">24</div>
 </div>
 <div style="display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px; padding: 0 14px 14px">
@@ -226,7 +230,7 @@ a{color:inherit;text-decoration:none}a:hover{color:inherit}
 </div>
 <div style="border-top: 1px solid rgba(255,255,255,.08); padding: 10px 14px; display: flex; align-items: center; justify-content: space-between; color: #9AA8B1">
 <div style="display: flex; align-items: center; gap: 8px; color: #F1F5F7"><svg class="i" viewBox="0 0 24 24"><path d="M3.5 7a2 2 0 0 1 2-2h3.5l2 2h7.5a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2h-13a2 2 0 0 1-2-2z"></path></svg>Open Folder</div>
-<div class="mono" style="font-size: 11px">~/ShotNest</div>
+<div class="mono" style="font-size: 11px">~/ShotCubby</div>
 </div>
 </div>
 
@@ -239,19 +243,31 @@ a{color:inherit;text-decoration:none}a:hover{color:inherit}
 
 <div id="shortcuts" style="display: flex; flex-direction: column; align-items: center; gap: 32px; padding: 0 0 104px">
 <div style="display: flex; flex-direction: column; align-items: center; text-align: center; gap: 12px; max-width: 620px">
-<div class="eye">No new shortcuts</div>
-<h2 class="disp" style="margin: 0; font-size: clamp(32px, 4.6vw, 50px)">Same keys. Different destination.</h2>
-<p style="margin: 0; color: #9AA8B1">ShotNest watches the four shortcuts you already use and redirects the result. It adds one of its own for search.</p>
+<div class="eye"><span class="m">No new shortcuts</span><span class="w">Familiar shortcuts</span></div>
+<h2 class="m disp" style="margin: 0; font-size: clamp(32px, 4.6vw, 50px)">Same keys. Different destination.</h2>
+<h2 class="w disp" style="margin: 0; font-size: clamp(32px, 4.6vw, 50px)">The Mac shortcuts, on Windows.</h2>
+<p class="m" style="margin: 0; color: #9AA8B1">ShotCubby watches the four shortcuts you already use and redirects the result. It adds one of its own for search.</p>
+<p class="w" style="margin: 0; color: #9AA8B1">ShotCubby brings the Mac screenshot keys to Windows and adds one for search. Every capture goes straight to your ShotCubby folder.</p>
 </div>
-<div style="align-self: stretch; overflow-x: auto; background: #12171A; border-radius: 16px; box-shadow: inset 0 0 0 1px rgba(255,255,255,.08)">
+<div class="m" style="align-self: stretch; overflow-x: auto; background: #12171A; border-radius: 16px; box-shadow: inset 0 0 0 1px rgba(255,255,255,.08)">
 <table class="tb" style="border-collapse: collapse; width: 100%; min-width: 640px; font-size: 15px">
-<thead><tr><th>Shortcut</th><th>macOS default</th><th>With ShotNest</th></tr></thead>
+<thead><tr><th>Shortcut</th><th>macOS default</th><th>With ShotCubby</th></tr></thead>
 <tbody>
-<tr><td><span class="kbd">⌘</span> <span class="kbd">⇧</span> <span class="kbd">3</span></td><td style="color: #9AA8B1">Saves full screen to Desktop</td><td>Moved to <span class="mono" style="font-size: 14px">~/ShotNest</span></td></tr>
-<tr><td><span class="kbd">⌘</span> <span class="kbd">⇧</span> <span class="kbd">4</span></td><td style="color: #9AA8B1">Saves selection to Desktop</td><td>Moved to <span class="mono" style="font-size: 14px">~/ShotNest</span></td></tr>
-<tr><td><span class="kbd">⌘</span> <span class="kbd">⇧</span> <span class="kbd">⌃</span> <span class="kbd">3</span></td><td style="color: #9AA8B1">Copies full screen to clipboard</td><td>Clipboard image saved to <span class="mono" style="font-size: 14px">~/ShotNest</span></td></tr>
-<tr><td><span class="kbd">⌘</span> <span class="kbd">⇧</span> <span class="kbd">⌃</span> <span class="kbd">4</span></td><td style="color: #9AA8B1">Copies selection to clipboard</td><td>Clipboard image saved to <span class="mono" style="font-size: 14px">~/ShotNest</span></td></tr>
-<tr><td><span class="kbd">⌃</span> <span class="kbd">,</span></td><td style="color: #9AA8B1">Nothing</td><td>Opens quick search <span class="mono" style="font-size: 12px; color: #9AA8B1">· customizable</span></td></tr>
+<tr><td><span class="kbd">⌘</span> <span class="kbd">⇧</span> <span class="kbd">3</span></td><td style="color: #9AA8B1">Saves full screen to Desktop</td><td>Moved to <span class="mono" style="font-size: 14px">~/ShotCubby</span></td></tr>
+<tr><td><span class="kbd">⌘</span> <span class="kbd">⇧</span> <span class="kbd">4</span></td><td style="color: #9AA8B1">Saves selection to Desktop</td><td>Moved to <span class="mono" style="font-size: 14px">~/ShotCubby</span></td></tr>
+<tr><td><span class="kbd">⌘</span> <span class="kbd">⇧</span> <span class="kbd">⌃</span> <span class="kbd">3</span></td><td style="color: #9AA8B1">Copies full screen to clipboard</td><td>Clipboard image saved to <span class="mono" style="font-size: 14px">~/ShotCubby</span></td></tr>
+<tr><td><span class="kbd">⌘</span> <span class="kbd">⇧</span> <span class="kbd">⌃</span> <span class="kbd">4</span></td><td style="color: #9AA8B1">Copies selection to clipboard</td><td>Clipboard image saved to <span class="mono" style="font-size: 14px">~/ShotCubby</span></td></tr>
+<tr><td><span class="kbd">⌘</span> <span class="kbd">/</span></td><td style="color: #9AA8B1">Nothing</td><td>Opens quick search <span class="mono" style="font-size: 12px; color: #9AA8B1">· customizable</span></td></tr>
+</tbody>
+</table>
+</div>
+<div class="w" style="align-self: stretch; overflow-x: auto; background: #12171A; border-radius: 16px; box-shadow: inset 0 0 0 1px rgba(255,255,255,.08)">
+<table class="tb" style="border-collapse: collapse; width: 100%; min-width: 560px; font-size: 15px">
+<thead><tr><th>Shortcut</th><th>What it does</th><th>Where it goes</th></tr></thead>
+<tbody>
+<tr><td><span class="kbd">Alt</span> <span class="kbd">Shift</span> <span class="kbd">3</span></td><td>Captures the full screen</td><td style="color: #9AA8B1">Saved to your ShotCubby folder</td></tr>
+<tr><td><span class="kbd">Alt</span> <span class="kbd">Shift</span> <span class="kbd">4</span></td><td>Captures a selection</td><td style="color: #9AA8B1">Saved to your ShotCubby folder</td></tr>
+<tr><td><span class="kbd">Ctrl</span> <span class="kbd">/</span></td><td>Opens quick search</td><td style="color: #9AA8B1">Customizable in Settings</td></tr>
 </tbody>
 </table>
 </div>
@@ -271,7 +287,7 @@ a{color:inherit;text-decoration:none}a:hover{color:inherit}
 <div class="mono" style="font-size: 19px; font-weight: 500; overflow-wrap: anywhere"><span id="last-file">checkout-empty-cart.png</span></div>
 </div>
 <h3>Name it while you still know what it is</h3>
-<p>Rename any screenshot straight from the popover. The file on disk follows, so Finder and Spotlight find it later.</p>
+<p>Rename any screenshot straight from the popover. The file on disk follows, so <span class="m">Finder and Spotlight</span><span class="w">File Explorer and Windows Search</span> find it later.</p>
 </div>
 
 <div class="card">
@@ -281,10 +297,16 @@ a{color:inherit;text-decoration:none}a:hover{color:inherit}
 <div style="width: 34px; height: 34px; border-radius: 8px; background: #1F272C; display: flex; align-items: center; justify-content: center"><svg class="i" viewBox="0 0 24 24"><path d="M4.5 7h15M9.5 7V5a1 1 0 0 1 1-1h3a1 1 0 0 1 1 1v2M6.5 7l.8 11a2 2 0 0 0 2 1.9h5.4a2 2 0 0 0 2-1.9l.8-11"></path></svg></div>
 </div>
 <h3>Hover actions</h3>
-<p>Copy, reveal in Finder or delete, right from the thumbnail.</p>
+<p>Copy, reveal in <span class="m">Finder</span><span class="w">File Explorer</span> or delete, right from the thumbnail.</p>
 </div>
 
-<div class="card">
+<div class="w card wide">
+<div style="display: flex; gap: 5px; padding-bottom: 10px"><span class="kbd">Alt</span><span class="kbd">Shift</span><span class="kbd">4</span></div>
+<h3>The Mac shortcuts</h3>
+<p>Alt Shift 3 for the full screen, Alt Shift 4 for a selection. The same habit on both machines.</p>
+</div>
+
+<div class="m card">
 <div style="display: flex; gap: 5px; padding-bottom: 10px"><span class="kbd">⌘</span><span class="kbd">⇧</span><span class="kbd">⌃</span><span class="kbd">4</span></div>
 <h3>Clipboard captures too</h3>
 <p>Screenshots copied with ⌃ are saved as files, not lost at the next copy.</p>
@@ -299,13 +321,13 @@ a{color:inherit;text-decoration:none}a:hover{color:inherit}
 </div>
 </div>
 
-<div class="card">
+<div class="m card">
 <div style="width: 34px; height: 34px; border-radius: 50%; background: rgba(53,214,230,.14); color: #35D6E6; display: flex; align-items: center; justify-content: center; margin-bottom: 10px"><svg class="i" viewBox="0 0 24 24"><path d="M5 12.5l4.5 4.5L19 7.5"></path></svg></div>
 <h3>Signed and notarized</h3>
 <p>Developer ID build notarized by Apple. No Gatekeeper warnings.</p>
 </div>
 
-<div class="card" style="grid-column: 1 / -1">
+<div class="m card" style="grid-column: 1 / -1">
 <div class="eye" style="color: #9AA8B1; padding-bottom: 2px">Under the hood</div>
 <h3>Native and light</h3>
 <p>Swift 5.9, SwiftUI and AppKit with zero external dependencies. FSEvents watches your screenshot folder and the clipboard is checked every 0.8 s, so a capture is caught either way.</p>
@@ -317,29 +339,26 @@ a{color:inherit;text-decoration:none}a:hover{color:inherit}
 <div id="install" style="display: flex; flex-direction: column; align-items: center; gap: 32px; padding: 0 0 96px">
 <div style="display: flex; flex-direction: column; align-items: center; text-align: center; gap: 12px">
 <div class="eye">Install</div>
-<h2 class="disp" style="margin: 0; font-size: clamp(32px, 4.6vw, 50px)">Free. Open source. Yours.</h2>
+<h2 class="disp" style="margin: 0; font-size: clamp(32px, 4.6vw, 50px)">Free. Yours.</h2>
 <p style="margin: 0; color: #9AA8B1">No account, no subscription. Download it and it's installed.</p>
 </div>
 <div class="card" style="width: 100%; max-width: 460px; box-sizing: border-box; gap: 14px; padding: 28px">
-<div style="display: flex; align-items: baseline; gap: 10px"><div class="disp" style="font-size: 44px">$0</div><div style="color: #9AA8B1; font-size: 14px">forever, MIT licensed</div></div>
-<a class="bp" style="height: 48px" href="https://github.com/Nelahia/shotnest/releases/latest/download/ShotNest.dmg">Download ShotNest.dmg</a>
-<div class="mono" style="font-size: 12px; color: #7C8A94; text-align: center">or with Homebrew</div>
-<div style="display: flex; align-items: center; gap: 10px; background: #0A0D0F; border-radius: 10px; box-shadow: inset 0 0 0 1px rgba(255,255,255,.1); padding: 6px 6px 6px 14px">
-<div class="mono" style="flex: 1; min-width: 0; font-size: 12px; overflow-x: auto; white-space: nowrap; padding: 6px 0">brew tap nelahia/tap &amp;&amp; brew install --cask shotnest</div>
-<button id="copy-brew" type="button" style="height: 36px; padding: 0 12px; border-radius: 7px; background: rgba(255,255,255,.1); font-size: 13px; font-weight: 600; flex: none">Copy</button>
-</div>
-<div class="mono" style="font-size: 12px; color: #7C8A94; text-align: center">Requires macOS 14.0 (Sonoma) or later</div>
+<div style="display: flex; align-items: baseline; gap: 10px"><div class="disp" style="font-size: 44px">$0</div><div style="color: #9AA8B1; font-size: 14px">forever</div></div>
+<a class="m bp" style="height: 48px" href="https://github.com/Nelahia/shotcubby/releases/latest/download/ShotCubby.dmg">Download ShotCubby.dmg</a>
+<a class="w bp" style="height: 48px" href="https://github.com/Nelahia/shotcubby/releases/latest">Download for Windows</a>
+<div class="w mono" style="font-size: 12px; color: #7C8A94; text-align: center">Installer on the latest GitHub release</div>
+<div class="m mono" style="font-size: 12px; color: #7C8A94; text-align: center">Requires macOS 14.0 (Sonoma) or later</div>
 </div>
 </div>
 
 <div style="display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 16px; padding: 28px 0 40px; border-top: 1px solid rgba(255,255,255,.07); font-size: 14px; color: #9AA8B1">
 <div style="display: flex; flex-wrap: wrap; gap: 8px 22px">
-<a href="https://github.com/Nelahia/shotnest">GitHub</a>
-<a href="https://github.com/Nelahia/shotnest/releases">Releases</a>
-<a href="https://github.com/Nelahia/shotnest/blob/main/README.md#license">MIT License</a>
+<a href="https://github.com/Nelahia/shotcubby">GitHub</a>
+<a href="https://github.com/Nelahia/shotcubby/releases">Releases</a>
 <a href="https://github.com/Nelahia">Nelahia</a>
 </div>
-<div class="mono" style="font-size: 12px; color: #7C8A94">ShotNest · Swift 5.9 · SwiftUI · AppKit</div>
+<div class="m mono" style="font-size: 12px; color: #7C8A94">ShotCubby · Swift 5.9 · SwiftUI · AppKit</div>
+<div class="w mono" style="font-size: 12px; color: #7C8A94">ShotCubby · Tauri · Rust</div>
 </div>
 
 </div>
@@ -359,13 +378,6 @@ a{color:inherit;text-decoration:none}a:hover{color:inherit}
     });
     input.addEventListener('keydown', function (e) { if (e.key === 'Enter' || e.key === 'Escape') input.blur(); });
   });
-  var versionBadge = document.getElementById('version-badge');
-  if (versionBadge) {
-    fetch('https://api.github.com/repos/Nelahia/shotnest/releases/latest')
-      .then(function (r) { return r.ok ? r.json() : null; })
-      .then(function (data) { if (data && data.tag_name) versionBadge.textContent = data.tag_name; })
-      .catch(function () {});
-  }
   var extras = [['pricing-table-v2', 'yesterday', '7 Oct 2026 at 16:40 · file', 0], ['onboarding-step-3', '2 days ago', '6 Oct 2026 at 15:07 · from clipboard', 2], ['invoice-march', '3 days ago', '5 Oct 2026 at 10:22 · file', 0]];
   var meta = [['12 minutes ago', '8 Oct 2026 at 14:32 · file', 2], ['3 hours ago', '8 Oct 2026 at 11:04 · from clipboard', 0], ['yesterday', '7 Oct 2026 at 22:18 · file', 1], ['yesterday', '7 Oct 2026 at 09:51 · file', 0]];
   var q = document.getElementById('sp-q'), rows = document.getElementById('sp-rows'), sel = 0, found = [];
@@ -407,14 +419,20 @@ a{color:inherit;text-decoration:none}a:hover{color:inherit}
     document.querySelectorAll('input.rn').forEach(function (input) { input.addEventListener('input', renderSpot); });
     renderSpot();
   }
-  var btn = document.getElementById('copy-brew');
-  if (btn) btn.addEventListener('click', function () {
-    if (!navigator.clipboard) return;
-    navigator.clipboard.writeText('brew tap nelahia/tap && brew install --cask shotnest').then(function () {
-      btn.textContent = 'Copied';
-      setTimeout(function () { btn.textContent = 'Copy'; }, 1600);
-    }, function () {});
-  });
+  var root = document.querySelector('.lp'), osBtns = document.querySelectorAll('button.os');
+  function setOS(os) {
+    root.classList.remove('os-mac', 'os-win'); root.classList.add('os-' + os);
+    osBtns.forEach(function (b) { b.classList.toggle('on', b.dataset.os === os); });
+  }
+  osBtns.forEach(function (b) { b.addEventListener('click', function () { setOS(b.dataset.os); }); });
+  setOS(/Win/i.test(navigator.userAgent) ? 'win' : 'mac');
+  var versionBadge = document.getElementById('version-badge');
+  if (versionBadge) {
+    fetch('https://api.github.com/repos/Nelahia/shotcubby/releases/latest')
+      .then(function (r) { return r.ok ? r.json() : null; })
+      .then(function (data) { if (data && data.tag_name) versionBadge.textContent = data.tag_name; })
+      .catch(function () {});
+  }
 })();
 </script>
 </body>
