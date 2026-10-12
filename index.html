@@ -410,7 +410,13 @@ a{color:inherit;text-decoration:none}a:hover{color:inherit}
     document.getElementById('sp-th').className = cur ? 'p' + cur[3] : '';
     document.getElementById('sp-file').textContent = cur ? cur[0] + '.png' : '';
     document.getElementById('sp-meta').textContent = cur ? cur[2] : '';
-    var on = rows.querySelector('.on'); if (on && on.scrollIntoView) on.scrollIntoView({ block: 'nearest' });
+    // Keep the selected row visible inside the list only: scrollIntoView would also scroll the page.
+    var on = rows.querySelector('.on');
+    if (on) {
+      var a = on.getBoundingClientRect(), b = rows.getBoundingClientRect();
+      if (a.top < b.top) rows.scrollTop += a.top - b.top;
+      else if (a.bottom > b.bottom) rows.scrollTop += a.bottom - b.bottom;
+    }
   }
   if (q && rows) {
     q.addEventListener('input', function () { sel = 0; renderSpot(); });
