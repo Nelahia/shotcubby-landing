@@ -148,7 +148,7 @@ h1{margin:0 0 6px;font-family:'Archivo',sans-serif;font-stretch:80%;font-weight:
 .m-doc:after{content:"";position:absolute;left:22%;right:22%;top:22%;height:50%;background:repeating-linear-gradient(#c3ccd2 0 5%,transparent 5% 14%)}
 .m-code{background:linear-gradient(#8bd5ff,#8bd5ff) 8% 14%/24% 4% no-repeat,linear-gradient(#ffb86b,#ffb86b) 8% 26%/42% 4% no-repeat,linear-gradient(#a6e3a1,#a6e3a1) 14% 38%/38% 4% no-repeat,linear-gradient(#8bd5ff,#8bd5ff) 14% 50%/54% 4% no-repeat,linear-gradient(#c3a6ff,#c3a6ff) 14% 62%/30% 4% no-repeat,#0e1317}
 .m-dark{background:linear-gradient(rgba(255,255,255,.1),rgba(255,255,255,.1)) 8% 16%/30% 5% no-repeat,linear-gradient(rgba(255,255,255,.07),rgba(255,255,255,.07)) 8% 34%/84% 40% no-repeat,#0b0f12}
-.caption{margin-top:14px;color:var(--muted);font-size:13px;text-align:center}
+.caption{margin-top:14px;color:var(--muted);font-size:13px;line-height:1.5;text-align:center;min-height:3em}
 body.embed{background:transparent;overflow:hidden}
 .embed .wrap{max-width:none;padding:0}
 .embed h1,.embed .sub,.embed .os{display:none}
@@ -224,7 +224,7 @@ body.embed{background:transparent;overflow:hidden}
   var $ = function (s) { return document.querySelector(s); };
   var demo = $('#demo'), stage = $('#stage'), camera = $('#camera');
   var params = new URLSearchParams(location.search), embed = params.has('embed');
-  if (embed) document.body.classList.add('embed');
+  if (embed) { document.body.classList.add('embed'); document.documentElement.style.overflow = 'hidden'; }
   var W = 1000, H = 625;
   var isMac = !/Win/i.test(navigator.userAgent);
   var token = 0, inView = true, idle = true;
