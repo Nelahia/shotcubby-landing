@@ -1,0 +1,424 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>ShotCubby — demo preview</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@75..100,600..800&family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600&display=swap">
+<style>
+:root{--bg:#0A0D0F;--panel:#14191D;--panel2:#1E262B;--ink:#F1F5F7;--muted:#9AA8B1;--line:rgba(255,255,255,.1);--accent:#35D6E6;--tile:#232C32}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:'IBM Plex Sans',system-ui,sans-serif}
+.wrap{max-width:1040px;margin:0 auto;padding:40px 16px 64px}
+h1{margin:0 0 6px;font-family:'Archivo',sans-serif;font-stretch:80%;font-weight:800;font-size:34px;letter-spacing:-.015em}
+.sub{margin:0 0 22px;color:var(--muted);font-size:15px}
+.bar{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:14px;flex-wrap:wrap}
+.os{display:flex;gap:2px;padding:2px;background:#12171A;border-radius:9px;box-shadow:inset 0 0 0 1px var(--line)}
+.os button{font:inherit;font-size:13px;font-weight:500;color:var(--muted);border:0;background:none;padding:6px 14px;border-radius:7px;cursor:pointer}
+.os button.on{background:#232C32;color:var(--ink)}
+.steps{display:flex;gap:8px;flex-wrap:wrap}
+.steps span{font-family:'IBM Plex Mono',monospace;font-size:12px;color:var(--muted);padding:6px 12px;border-radius:999px;box-shadow:inset 0 0 0 1px var(--line);transition:.25s}
+.steps span.on{color:#0A0D0F;background:var(--accent);box-shadow:none}
+
+/* ---------- the stage: a 1000x625 design, scaled to fit ---------- */
+.demo{position:relative;width:100%;aspect-ratio:1000/625;overflow:hidden;border-radius:18px;background:#05080A;box-shadow:0 0 0 1px var(--line),0 30px 80px -30px rgba(0,0,0,.8)}
+.stage{position:absolute;left:0;top:0;width:1000px;height:625px;transform-origin:0 0;overflow:hidden;font-family:ui-sans-serif,system-ui,-apple-system,'Segoe UI',sans-serif;font-size:13px;color:#EAF0F3;transition:opacity .5s}
+.stage.fade{opacity:0}
+.camera{position:absolute;inset:0;transform-origin:0 0;transition:transform .75s cubic-bezier(.65,0,.35,1)}
+.camera.none{transition:none}
+.wall{position:absolute;inset:0;background:radial-gradient(900px 600px at 18% 12%,#1e4a63 0,transparent 60%),radial-gradient(800px 600px at 90% 90%,#12354a 0,transparent 55%),linear-gradient(135deg,#0d1c27,#0a1219)}
+.mac .win-only,.win .mac-only{display:none!important}
+
+/* menu bar (mac) / taskbar (win) */
+.mbar{position:absolute;left:0;right:0;top:0;height:26px;background:rgba(10,14,17,.55);backdrop-filter:blur(8px);display:flex;align-items:center;gap:16px;padding:0 14px;font-size:12px;font-weight:500;color:#DDE5EA}
+.mbar .sp{flex:1}
+.tbar{position:absolute;left:0;right:0;bottom:0;height:46px;background:rgba(14,19,23,.82);backdrop-filter:blur(8px);display:flex;align-items:center;justify-content:center;gap:10px;border-top:1px solid rgba(255,255,255,.06)}
+.tbar .app{width:26px;height:26px;border-radius:7px;background:rgba(255,255,255,.12)}
+.tbar .app.start{background:linear-gradient(135deg,#4cc2ff,#2a7fd4)}
+.tray{position:absolute;right:14px;top:0;height:100%;display:flex;align-items:center;gap:12px;font-size:11px;color:#DDE5EA}
+.glyph{width:18px;height:18px;color:#F1F5F7;transition:color .2s}
+.glyph.pulse{animation:pulse .9s ease}
+@keyframes pulse{0%{transform:scale(1);color:#F1F5F7}30%{transform:scale(1.6);color:#35D6E6}100%{transform:scale(1);color:#F1F5F7}}
+.badge{position:absolute;font:600 10px 'IBM Plex Mono',monospace;color:#0A0D0F;background:var(--accent);padding:1px 5px;border-radius:999px;opacity:0;transform:translateY(4px);transition:.25s}
+.badge.on{opacity:1;transform:none}
+.dot{width:12px;height:12px;border-radius:50%;background:rgba(255,255,255,.35)}
+
+/* windows on the desktop */
+.w{position:absolute;border-radius:10px;overflow:hidden;background:#161d22;box-shadow:0 0 0 1px rgba(255,255,255,.1),0 24px 60px -20px rgba(0,0,0,.7)}
+.title{height:30px;display:flex;align-items:center;gap:7px;padding:0 12px;background:#1b2329;font-size:11px;color:#9AA8B1}
+.title .t{flex:1;text-align:center}
+.traffic i{display:inline-block;width:10px;height:10px;border-radius:50%;margin-right:5px;background:#ff5f57}
+.traffic i:nth-child(2){background:#febc2e}.traffic i:nth-child(3){background:#28c840}
+.wc{display:flex;gap:14px;color:#9AA8B1;font-size:11px}
+#browser{left:48px;top:64px;width:520px;height:340px}
+.url{height:24px;margin:8px 12px;border-radius:6px;background:#0f1519;color:#6f7e88;font-size:11px;display:flex;align-items:center;padding:0 10px}
+.page{position:absolute;left:0;right:0;top:62px;bottom:0;padding:16px 22px}
+.ln{height:7px;border-radius:4px;background:rgba(255,255,255,.1);margin-bottom:9px}
+.h1{height:14px;width:48%;background:rgba(255,255,255,.2);margin-bottom:14px}
+.hero{height:118px;border-radius:8px;margin:14px 0;background:linear-gradient(120deg,rgba(53,214,230,.35),rgba(53,214,230,.08)),#1c262c;position:relative}
+.hero:after{content:"";position:absolute;left:14px;right:14px;bottom:14px;height:46px;background:linear-gradient(90deg,rgba(255,255,255,.18) 0 18%,transparent 18% 24%,rgba(255,255,255,.26) 24% 44%,transparent 44% 50%,rgba(255,255,255,.14) 50% 72%,transparent 72% 78%,rgba(255,255,255,.22) 78% 100%);clip-path:polygon(0 80%,18% 50%,24% 62%,44% 20%,50% 40%,72% 10%,78% 30%,100% 0,100% 100%,0 100%)}
+#chat{left:600px;top:84px;width:352px;height:420px}
+.msgs{padding:14px;display:flex;flex-direction:column;gap:10px}
+.bubble{max-width:78%;padding:9px 12px;border-radius:12px;background:#222c33}
+.bubble.me{align-self:flex-end;background:rgba(53,214,230,.22);box-shadow:inset 0 0 0 1px rgba(53,214,230,.35)}
+.bubble .ln:last-child{margin-bottom:0}
+.paste{position:relative;display:none;width:178px;height:112px;border-radius:8px;overflow:hidden}
+.paste.in{display:block;animation:pop .45s cubic-bezier(.2,1.2,.4,1)}
+@keyframes pop{from{transform:scale(.7);opacity:0}to{transform:none;opacity:1}}
+.input{position:absolute;left:12px;right:12px;bottom:12px;height:36px;border-radius:10px;background:#0f1519;color:#6f7e88;display:flex;align-items:center;padding:0 12px;font-size:12px}
+
+/* screenshot selection + flash */
+.snip{position:absolute;border:1.5px dashed #fff;background:rgba(53,214,230,.14);width:0;height:0;opacity:0;transition:width .7s cubic-bezier(.4,0,.2,1),height .7s cubic-bezier(.4,0,.2,1),opacity .15s}
+.snip.on{opacity:1}
+.snip small{position:absolute;left:0;top:-20px;font:500 10px 'IBM Plex Mono',monospace;color:#fff;background:rgba(0,0,0,.6);padding:2px 6px;border-radius:4px;white-space:nowrap}
+.flash{position:absolute;inset:0;background:#fff;opacity:0;pointer-events:none}
+.flash.go{animation:flash .35s ease}
+@keyframes flash{0%{opacity:0}20%{opacity:.85}100%{opacity:0}}
+.cursor{position:absolute;left:0;top:0;width:22px;height:22px;transition:transform .65s cubic-bezier(.4,0,.2,1),opacity .25s;opacity:0;z-index:30}
+.cursor svg{width:22px;height:22px;filter:drop-shadow(0 2px 3px rgba(0,0,0,.5))}
+.cursor.on{opacity:1}
+.ring{position:absolute;left:-7px;top:-8px;width:20px;height:20px;border-radius:50%;border:2px solid var(--accent);opacity:0}
+.cursor.click .ring{animation:ring .55s ease-out}
+@keyframes ring{from{transform:scale(.3);opacity:.95}to{transform:scale(1.9);opacity:0}}
+.glyph.press{transform:scale(.8)}
+
+/* the menu that drops from the icon */
+.pop{position:absolute;left:690px;width:300px;height:340px;border-radius:14px;background:var(--panel);box-shadow:0 0 0 1px var(--line),0 30px 70px -20px rgba(0,0,0,.8);overflow:hidden;opacity:0;transform:scale(.96);transition:opacity .18s,transform .18s;pointer-events:none;z-index:12}
+.pop.open{opacity:1;transform:none}
+.mac .pop{top:34px;transform-origin:top right}
+.win .pop{top:231px;transform-origin:bottom right}
+.ph2{height:44px;display:flex;align-items:center;gap:9px;padding:0 14px;border-bottom:1px solid var(--line);font-size:13px}
+.ph2 .glyph{width:17px;height:17px}.ph2 .sp{flex:1}
+.ph2 .ic{color:var(--muted);font-size:14px}
+.pl{padding:8px 8px;display:flex;flex-direction:column;gap:2px}
+.day{font:500 10px 'IBM Plex Mono',monospace;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);padding:8px 8px 4px}
+.pr{display:flex;align-items:center;gap:10px;padding:5px 8px;border-radius:8px}
+.pr.new{background:rgba(53,214,230,.14);box-shadow:inset 0 0 0 1px rgba(53,214,230,.45)}
+.pr .th{width:52px;height:39px;border-radius:5px;flex:none;position:relative;overflow:hidden;box-shadow:inset 0 0 0 1px rgba(255,255,255,.1)}
+.pr .nm{font-size:11.5px;font-weight:600;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:190px}
+.pr .wh{font-size:11px;color:var(--muted)}
+.pf{position:absolute;left:0;right:0;bottom:0;height:36px;border-top:1px solid var(--line);display:flex;align-items:center;justify-content:space-between;padding:0 14px;font-size:11.5px;color:var(--muted)}
+
+/* the search panel */
+.spot{position:absolute;left:200px;top:120px;width:600px;height:360px;border-radius:16px;background:var(--panel);box-shadow:0 0 0 1px var(--line),0 40px 90px -20px rgba(0,0,0,.8);overflow:hidden;opacity:0;transform:scale(.96);transition:opacity .2s,transform .2s;pointer-events:none;z-index:10}
+.spot.open{opacity:1;transform:none}
+.spot.instant{transition:none}
+.sh{height:54px;display:flex;align-items:center;gap:12px;padding:0 18px;border-bottom:1px solid var(--line);font-size:17px;font-weight:500}
+.sh .glyph{width:20px;height:20px}
+.sh .ph{flex:1;color:#7C8A94}
+.cnt{font:500 11px 'IBM Plex Mono',monospace;color:var(--muted);background:#232C32;border-radius:999px;padding:3px 9px}
+.sb{position:absolute;left:0;right:0;top:54px;bottom:38px;display:flex}
+.list{width:236px;border-right:1px solid var(--line);padding:8px;display:flex;flex-direction:column;gap:2px;overflow:hidden}
+.row{display:flex;align-items:center;gap:10px;padding:6px 8px;border-radius:8px;transition:background .15s}
+.row.on{background:rgba(53,214,230,.22)}
+.row .th{width:46px;height:34px;border-radius:5px;flex:none;overflow:hidden;box-shadow:inset 0 0 0 1px rgba(255,255,255,.1)}
+.row .nm{font-size:11.5px;font-weight:600;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:140px}
+.row .wh{font-size:11px;color:var(--muted)}
+.prev{flex:1;padding:14px;display:flex;flex-direction:column;gap:9px;min-width:0}
+.prev .img{flex:1;border-radius:8px;overflow:hidden;box-shadow:inset 0 0 0 1px rgba(255,255,255,.08);position:relative}
+.prev .img>div{position:absolute;inset:0;transition:opacity .25s}
+.prev .fn{font:500 11px 'IBM Plex Mono',monospace;color:#F1F5F7;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.prev .dt{font-size:11px;color:var(--muted)}
+.sf{position:absolute;left:0;right:0;bottom:0;height:38px;border-top:1px solid var(--line);display:flex;align-items:center;gap:16px;padding:0 14px;font-size:11.5px;color:var(--muted)}
+.sf .sp{flex:1}
+.hint{display:flex;align-items:center;gap:6px;padding:3px 6px;border-radius:7px;transition:.2s}
+.hint.hot{background:rgba(53,214,230,.25);color:#fff}
+.kc{font:500 10.5px 'IBM Plex Mono',monospace;color:#F1F5F7;background:#1F272C;border:1px solid rgba(255,255,255,.14);border-bottom-width:2px;border-radius:5px;padding:1px 5px}
+
+/* the copy toast, outside the panel */
+.toast{position:absolute;left:435px;width:130px;height:38px;border-radius:999px;background:#14191D;color:#fff;box-shadow:inset 0 0 0 1px rgba(255,255,255,.18),0 12px 28px -10px rgba(0,0,0,.7);display:flex;align-items:center;justify-content:center;gap:6px;font-size:13px;font-weight:500;opacity:0;z-index:20}
+.mac .toast{top:40px}.win .toast{top:18px}
+.toast.go{animation:toast 1.9s ease forwards}
+@keyframes toast{0%{opacity:0;transform:translateY(-12px)}12%{opacity:1;transform:none}80%{opacity:1;transform:none}100%{opacity:0;transform:translateY(-6px)}}
+
+/* key caps overlay, never zoomed */
+.keys{position:absolute;left:0;right:0;display:flex;justify-content:center;gap:8px;opacity:0;transform:translateY(8px);transition:.2s;z-index:40}
+.mac .keys{bottom:30px}.win .keys{bottom:64px}
+.keys.show{opacity:1;transform:none}
+.k{min-width:44px;height:44px;padding:0 12px;display:flex;align-items:center;justify-content:center;font:500 18px 'IBM Plex Mono',monospace;color:#F1F5F7;background:#232C32;border:1px solid rgba(255,255,255,.18);border-bottom-width:4px;border-radius:10px;box-shadow:0 10px 24px -8px rgba(0,0,0,.7);transition:.12s}
+.keys.down .k{transform:translateY(3px);border-bottom-width:1px;background:#2c3a42;color:var(--accent);box-shadow:0 0 0 2px rgba(53,214,230,.35)}
+
+/* mock screenshot art, used for thumbnails and previews */
+.m{position:absolute;inset:0;background:#1b2328;overflow:hidden}
+.m-page{background:linear-gradient(var(--accent),var(--accent)) 8% 12%/20% 5% no-repeat,linear-gradient(rgba(255,255,255,.2),rgba(255,255,255,.2)) 8% 26%/58% 6% no-repeat,linear-gradient(rgba(255,255,255,.1),rgba(255,255,255,.1)) 8% 40%/84% 4% no-repeat,linear-gradient(rgba(255,255,255,.1),rgba(255,255,255,.1)) 8% 50%/70% 4% no-repeat,linear-gradient(rgba(53,214,230,.3),rgba(53,214,230,.1)) 8% 64%/84% 28% no-repeat,#1b2328}
+.m-chart{background:linear-gradient(rgba(255,255,255,.14),rgba(255,255,255,.14)) 8% 14%/36% 6% no-repeat,linear-gradient(#35D6E6,#35D6E6) 14% 90%/8% 40% no-repeat,linear-gradient(#35D6E6,#35D6E6) 30% 90%/8% 62% no-repeat,linear-gradient(#35D6E6,#35D6E6) 46% 90%/8% 30% no-repeat,linear-gradient(#35D6E6,#35D6E6) 62% 90%/8% 74% no-repeat,linear-gradient(#35D6E6,#35D6E6) 78% 90%/8% 52% no-repeat,#162026}
+.m-doc{background:linear-gradient(rgba(255,255,255,.85),rgba(255,255,255,.85)) 14% 12%/72% 80% no-repeat,#2a343a}
+.m-doc:after{content:"";position:absolute;left:22%;right:22%;top:22%;height:50%;background:repeating-linear-gradient(#c3ccd2 0 5%,transparent 5% 14%)}
+.m-code{background:linear-gradient(#8bd5ff,#8bd5ff) 8% 14%/24% 4% no-repeat,linear-gradient(#ffb86b,#ffb86b) 8% 26%/42% 4% no-repeat,linear-gradient(#a6e3a1,#a6e3a1) 14% 38%/38% 4% no-repeat,linear-gradient(#8bd5ff,#8bd5ff) 14% 50%/54% 4% no-repeat,linear-gradient(#c3a6ff,#c3a6ff) 14% 62%/30% 4% no-repeat,#0e1317}
+.m-dark{background:linear-gradient(rgba(255,255,255,.1),rgba(255,255,255,.1)) 8% 16%/30% 5% no-repeat,linear-gradient(rgba(255,255,255,.07),rgba(255,255,255,.07)) 8% 34%/84% 40% no-repeat,#0b0f12}
+.caption{margin-top:14px;color:var(--muted);font-size:13px;text-align:center}
+body.embed{background:transparent;overflow:hidden}
+.embed .wrap{max-width:none;padding:0}
+.embed h1,.embed .sub,.embed .os{display:none}
+.embed .bar{justify-content:center;margin-bottom:14px}
+@media (prefers-reduced-motion:reduce){.camera{transition:none}}
+</style>
+</head>
+<body>
+<svg width="0" height="0" style="position:absolute"><defs>
+<symbol id="g" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path stroke-width="2" d="M3 8V5.5A2.5 2.5 0 0 1 5.5 3H8M16 3h2.5A2.5 2.5 0 0 1 21 5.5V8M21 16v2.5a2.5 2.5 0 0 1-2.5 2.5H16M8 21H5.5A2.5 2.5 0 0 1 3 18.5V16"/><path stroke-width="1.75" d="M9.5 7.25h5"/><rect x="7" y="9.75" width="10" height="7.25" rx="1.75" fill="currentColor" stroke="none"/></g></symbol>
+<symbol id="cur" viewBox="0 0 22 22"><path d="M3 2l15 8.2-6.4 1.7 3.4 6.6-2.8 1.4-3.4-6.7L4.6 18z" fill="#fff" stroke="#111" stroke-width="1.2" stroke-linejoin="round"/></symbol>
+</defs></svg>
+
+<div class="wrap">
+  <h1>See it work in fifteen seconds.</h1>
+  <p class="sub">Preview of the scripted demo (not on the landing yet). Real UI, fake screenshots.</p>
+  <div class="bar">
+    <div class="steps" id="steps"><span>1 · Capture</span><span>2 · Search</span><span>3 · Copy &amp; paste</span></div>
+    <div class="os" id="os"><button data-os="mac">macOS</button><button data-os="win">Windows</button></div>
+  </div>
+
+  <div class="demo" id="demo">
+    <div class="stage mac" id="stage">
+      <div class="camera" id="camera">
+        <div class="wall"></div>
+
+        <div class="w" id="browser">
+          <div class="title"><span class="traffic mac-only"><i></i><i></i><i></i></span><span class="t">Quarterly report — Browser</span><span class="wc win-only"><span>–</span><span>▢</span><span>✕</span></span></div>
+          <div class="url">shotcubby.com/report</div>
+          <div class="page"><div class="ln h1"></div><div class="ln" style="width:86%"></div><div class="ln" style="width:72%"></div><div class="hero"></div><div class="ln" style="width:90%"></div><div class="ln" style="width:64%"></div></div>
+        </div>
+
+        <div class="w" id="chat">
+          <div class="title"><span class="traffic mac-only"><i></i><i></i><i></i></span><span class="t">Design review</span><span class="wc win-only"><span>–</span><span>▢</span><span>✕</span></span></div>
+          <div class="msgs">
+            <div class="bubble"><div class="ln" style="width:140px"></div><div class="ln" style="width:96px"></div></div>
+            <div class="bubble"><div class="ln" style="width:120px"></div></div>
+            <div class="bubble me" id="pastedBubble" style="display:none"><div class="paste" id="paste"><div class="m m-page"></div></div></div>
+          </div>
+          <div class="input">Message…</div>
+        </div>
+
+        <div class="snip" id="snip"><small>520 × 340</small></div>
+        <div class="cursor" id="cursor"><svg viewBox="0 0 22 22"><use href="#cur"/></svg><i class="ring"></i></div>
+
+        <div class="pop" id="pop">
+          <div class="ph2"><svg class="glyph"><use href="#g"/></svg><b>ShotCubby</b><span class="cnt" id="pcnt">5</span><span class="sp"></span><span class="ic">⌕</span><span class="ic">⚙</span></div>
+          <div class="pl" id="plist"></div>
+          <div class="pf"><span>Open Folder</span><span class="mono">5 screenshots</span></div>
+        </div>
+
+        <div class="spot" id="spot">
+          <div class="sh"><svg class="glyph"><use href="#g"/></svg><span class="ph">Search screenshots</span><span class="cnt" id="cnt">5</span></div>
+          <div class="sb"><div class="list" id="list"></div><div class="prev"><div class="img" id="img"></div><div class="fn" id="fn"></div><div class="dt" id="dt"></div></div></div>
+          <div class="sf"><span class="hint"><span class="kc">↩</span>Preview</span><span class="hint" id="copyHint"><span class="kc" id="copyKey">⌘ C</span>Copy</span><span class="sp"></span><span class="hint">Actions <span class="kc" id="actKey">⌘ K</span></span></div>
+        </div>
+        <div class="mbar mac-only"><span class="dot" style="width:11px;height:11px;opacity:.8"></span><span style="font-weight:700">Finder</span><span>File</span><span>Edit</span><span>View</span><span class="sp"></span><span style="position:relative"><svg class="glyph" id="glyphM"><use href="#g"/></svg><span class="badge" id="badgeM" style="left:-4px;top:16px">+1</span></span><span class="dot"></span><span>Mon 09:41</span></div>
+        <div class="tbar win-only"><div class="app start"></div><div class="app"></div><div class="app"></div><div class="app"></div>
+          <div class="tray"><span style="position:relative"><svg class="glyph" id="glyphW"><use href="#g"/></svg><span class="badge" id="badgeW" style="left:-6px;top:-18px">+1</span></span><span class="dot"></span><span>09:41<br>12/10/2026</span></div></div>
+
+        <div class="toast" id="toast"><svg style="width:14px;height:14px" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 7"/></svg>Copied</div>
+      </div>
+
+      <div class="flash" id="flash"></div>
+      <div class="keys" id="keys"></div>
+    </div>
+  </div>
+  <div class="caption" id="caption">&nbsp;</div>
+</div>
+
+<script>
+(function () {
+  var $ = function (s) { return document.querySelector(s); };
+  var demo = $('#demo'), stage = $('#stage'), camera = $('#camera');
+  var params = new URLSearchParams(location.search), embed = params.has('embed');
+  if (embed) document.body.classList.add('embed');
+  var W = 1000, H = 625;
+  var isMac = !/Win/i.test(navigator.userAgent);
+  var token = 0, inView = true, idle = true;
+
+  var ITEMS = [
+    { n: 'Screenshot 2026-10-12 at 09.41.22.png', w: 'just now', k: 'page', fresh: true },
+    { n: 'Screenshot 2026-10-12 at 09.12.05.png', w: '29 min ago', k: 'chart' },
+    { n: 'Invoice march.png', w: '2 hr ago', k: 'doc' },
+    { n: 'Bug report.png', w: 'yesterday', k: 'code' },
+    { n: 'Tssd (clipboard).png', w: 'yesterday', k: 'dark' }
+  ];
+
+  function keysFor(action) {
+    var m = isMac;
+    return {
+      snip: m ? ['⇧', '⌘', '4'] : ['Win', '⇧', 'S'],
+      open: [m ? '⌘' : 'Ctrl', '/'],
+      copy: [m ? '⌘' : 'Ctrl', 'C'],
+      paste: [m ? '⌘' : 'Ctrl', 'V'],
+      down: ['↓'], up: ['↑'], esc: ['Esc']
+    }[action];
+  }
+
+  function fit() { stage.style.transform = 'scale(' + (demo.clientWidth / W) + ')'; }
+  new ResizeObserver(fit).observe(demo); fit();
+
+  function zoom(r, max) {
+    var s = Math.min(max || 3, W / r.w, H / r.h);
+    var tx = (W - r.w * s) / 2 - r.x * s, ty = (H - r.h * s) / 2 - r.y * s;
+    tx = Math.min(0, Math.max(W - W * s, tx)); ty = Math.min(0, Math.max(H - H * s, ty));
+    camera.style.transform = 'translate(' + tx + 'px,' + ty + 'px) scale(' + s + ')';
+  }
+  function zoomOut() { camera.style.transform = 'translate(0,0) scale(1)'; }
+
+  var cursor = $('#cursor');
+  // Centre of an element in camera coordinates, whatever the camera is doing:
+  // summed from offsets rather than measured on screen.
+  function pos(el) {
+    var x = el.offsetWidth / 2, y = el.offsetHeight / 2, n = el;
+    while (n && n !== camera) { x += n.offsetLeft; y += n.offsetTop; n = n.offsetParent; }
+    return { x: x, y: y };
+  }
+  function clickCursor() { cursor.classList.remove('click'); void cursor.offsetWidth; cursor.classList.add('click'); }
+  var POP = [
+    { h: 'Today' },
+    { n: 'Screenshot 2026-10-12 at 09.41.22.png', w: 'just now', k: 'page', fresh: true },
+    { n: 'Screenshot 2026-10-12 at 09.12.05.png', w: '29 min ago', k: 'chart' },
+    { n: 'Invoice march.png', w: '2 hr ago', k: 'doc' },
+    { h: 'Yesterday' },
+    { n: 'Bug report.png', w: '21:08', k: 'code' }
+  ];
+  function renderPop() {
+    $('#plist').innerHTML = POP.map(function (r) {
+      if (r.h) return '<div class="day">' + r.h + '</div>';
+      return '<div class="pr' + (r.fresh ? ' new' : '') + '"><div class="th">' + mock(r.k) + '</div><div><div class="nm">' + r.n + '</div><div class="wh">' + r.w + '</div></div></div>';
+    }).join('');
+  }
+  function cursorJump(x, y) { cursor.style.transition = 'none'; cursorTo(x, y); void cursor.offsetWidth; cursor.style.transition = ''; }
+  function cursorTo(x, y) { cursor.style.transform = 'translate(' + x + 'px,' + y + 'px)'; }
+
+  var keysEl = $('#keys');
+  function showKeys(arr) {
+    keysEl.innerHTML = arr.map(function (k) { return '<div class="k">' + k + '</div>'; }).join('');
+    keysEl.classList.remove('down'); keysEl.classList.add('show');
+  }
+  function press(ms) { keysEl.classList.add('down'); return new Promise(function (r) { setTimeout(function () { keysEl.classList.remove('down'); r(); }, ms || 170); }); }
+  function hideKeys() { keysEl.classList.remove('show', 'down'); }
+
+  function mock(k) { return '<div class="m m-' + k + '"></div>'; }
+  function renderList(sel, showFresh) {
+    var items = ITEMS.filter(function (i) { return showFresh || !i.fresh; });
+    $('#cnt').textContent = items.length;
+    $('#list').innerHTML = items.map(function (it, idx) {
+      return '<div class="row' + (idx === sel ? ' on' : '') + '"><div class="th" style="position:relative">' + mock(it.k) + '</div><div><div class="nm">' + it.n + '</div><div class="wh">' + it.w + '</div></div></div>';
+    }).join('');
+    showPreview(items[sel]);
+  }
+  var lastPrev = null;
+  function showPreview(it) {
+    if (!it || lastPrev === it) return; lastPrev = it;
+    var img = $('#img'); var old = img.firstElementChild;
+    var n = document.createElement('div'); n.innerHTML = mock(it.k); n = n.firstChild; n.style.opacity = 0;
+    var wrap = document.createElement('div'); wrap.style.cssText = 'position:absolute;inset:0;opacity:0;transition:opacity .25s'; wrap.appendChild(n); n.style.opacity = 1;
+    img.appendChild(wrap);
+    requestAnimationFrame(function () { wrap.style.opacity = 1; if (old) old.style.opacity = 0; });
+    setTimeout(function () { while (img.children.length > 1) img.removeChild(img.firstChild); }, 320);
+    $('#fn').textContent = it.n; $('#dt').textContent = '12/10/2026 · from ' + (it.n.indexOf('clipboard') > -1 ? 'clipboard' : 'file');
+  }
+
+  function setStep(i) {
+    document.querySelectorAll('#steps span').forEach(function (s, idx) { s.classList.toggle('on', idx === i); });
+    $('#caption').textContent = ['Take a screenshot the way you always do — ShotCubby files it, and one click on the icon lists them all.', 'Open the search from anywhere with one shortcut.', 'Copy it — the panel closes at once — and paste it where you need it.'][i];
+  }
+
+  function reset() {
+    zoomOut();
+    $('#spot').classList.remove('open'); $('#pop').classList.remove('open'); $('#toast').classList.remove('go');
+    renderPop();
+    $('#snip').classList.remove('on'); $('#snip').style.width = '0'; $('#snip').style.height = '0';
+    $('#pastedBubble').style.display = 'none'; $('#paste').classList.remove('in');
+    ['#badgeM', '#badgeW'].forEach(function (b) { $(b).classList.remove('on'); });
+    cursor.classList.remove('on'); hideKeys(); lastPrev = null; $('#copyHint').classList.remove('hot');
+    $('#copyKey').textContent = keysFor('copy').join(' '); $('#actKey').textContent = (isMac ? '⌘' : 'Ctrl') + ' K';
+    renderList(0, false);
+  }
+
+  var browserRect = { x: 40, y: 56, w: 536, h: 360 };
+  var panelRect = { x: 170, y: 100, w: 660, h: 400 };
+  var footRect = { x: 190, y: 380, w: 430, h: 110 };
+  var chatRect = { x: 580, y: 70, w: 392, h: 450 };
+  function trayRect() { return isMac ? { x: 700, y: 0, w: 300, h: 130 } : { x: 700, y: 495, w: 300, h: 130 }; }
+  function popRect() { return isMac ? { x: 590, y: 0, w: 410, h: 400 } : { x: 590, y: 225, w: 410, h: 400 }; }
+  function toastRect() { return isMac ? { x: 380, y: 20, w: 240, h: 90 } : { x: 380, y: 0, w: 240, h: 90 }; }
+
+  function sleep(ms, my) { return new Promise(function (res, rej) { setTimeout(function () { if (my !== token || !inView) rej('stop'); else res(); }, ms); }); }
+
+  async function scene(my) {
+    var s = function (ms) { return sleep(ms, my); };
+    stage.classList.remove('fade'); reset(); setStep(0);
+    await s(500);
+
+    // 1 · capture
+    showKeys(keysFor('snip')); await s(250); await press(150); await s(100); hideKeys();
+    cursorJump(420, 300); cursor.classList.add('on'); await s(80);
+    zoom(browserRect, 1.5);
+    cursorTo(62, 84); await s(650);
+    var sn = $('#snip'); sn.style.left = '62px'; sn.style.top = '84px'; sn.classList.add('on');
+    await s(40); cursorTo(560, 400); sn.style.width = '498px'; sn.style.height = '316px'; await s(750);
+    $('#flash').classList.add('go'); sn.classList.remove('on'); cursor.classList.remove('on');
+    await s(150); zoom(trayRect(), 2.6);
+    var g = isMac ? '#glyphM' : '#glyphW', b = isMac ? '#badgeM' : '#badgeW';
+    await s(350); $(g).classList.add('pulse'); $(b).classList.add('on'); await s(500);
+    $('#flash').classList.remove('go'); $(g).classList.remove('pulse'); $(b).classList.remove('on');
+
+    // a quick glimpse: click the icon, the menu lists every capture, Esc closes it
+    zoom(popRect(), 1.6);
+    var gp = pos($(g).parentNode);
+    cursorJump(gp.x - 90, gp.y + (isMac ? 60 : -60)); cursor.classList.add('on'); await s(60);
+    cursorTo(gp.x - 3, gp.y - 2); await s(550);
+    clickCursor(); $(g).classList.add('press'); await s(80);
+    $(g).classList.remove('press'); $('#pop').classList.add('open'); await s(550);
+    showKeys(keysFor('esc')); await s(150); await press(100); hideKeys();
+    $('#pop').classList.remove('open'); cursor.classList.remove('on'); await s(120);
+
+    // 2 · search
+    setStep(1); renderList(0, true);
+    showKeys(keysFor('open')); await s(250); await press(150); await s(80); hideKeys();
+    $('#spot').classList.add('open'); zoom(panelRect, 1.6); await s(750);
+    showKeys(keysFor('down')); await s(150); await press(110); renderList(1, true); await s(350);
+    await press(110); renderList(2, true); await s(400); hideKeys();
+
+    // 3 · copy + paste
+    setStep(2); zoom(footRect, 2.2); await s(650);
+    $('#copyHint').classList.add('hot'); showKeys(keysFor('copy')); await s(300); await press(160);
+    var sp = $('#spot'); sp.classList.add('instant'); sp.classList.remove('open'); hideKeys();
+    requestAnimationFrame(function () { sp.classList.remove('instant'); });
+    $('#toast').classList.add('go'); zoom(toastRect(), 3); await s(1100);
+    zoom(chatRect, 1.6); await s(600);
+    showKeys(keysFor('paste')); await s(250); await press(140); await s(80); hideKeys();
+    $('#pastedBubble').style.display = ''; $('#paste').classList.add('in');
+    await s(1500); zoomOut(); await s(500);
+    stage.classList.add('fade'); await s(450);
+  }
+
+  async function loop() {
+    var my = ++token; idle = false;
+    try { while (my === token) { await scene(my); } } catch (e) { /* superseded or hidden */ }
+    if (my === token) idle = true;
+  }
+
+  // Embedded in the landing page: tell it how tall to be, and follow its OS switch.
+  function reportHeight() { if (embed && parent !== window) parent.postMessage({ type: 'demo-height', h: Math.ceil(document.querySelector('.wrap').getBoundingClientRect().height) }, location.origin); }
+  if (embed) {
+    new ResizeObserver(reportHeight).observe(document.querySelector('.wrap')); window.addEventListener('load', reportHeight); window.addEventListener('resize', reportHeight);
+    window.addEventListener('message', function (e) { if (e.origin === location.origin && e.data && e.data.type === 'os') setOS(!!e.data.mac); });
+  }
+
+  function setOS(mac) {
+    isMac = mac; stage.classList.toggle('mac', mac); stage.classList.toggle('win', !mac);
+    document.querySelectorAll('#os button').forEach(function (b) { b.classList.toggle('on', (b.dataset.os === 'mac') === mac); });
+    camera.classList.add('none'); camera.style.transform = ''; void camera.offsetWidth; camera.classList.remove('none');
+    loop();
+  }
+  document.querySelectorAll('#os button').forEach(function (b) { b.addEventListener('click', function () { setOS(b.dataset.os === 'mac'); }); });
+
+  if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+    isMac = !/Win/i.test(navigator.userAgent); stage.className = 'stage ' + (isMac ? 'mac' : 'win');
+    reset(); setStep(1); renderList(0, true); $('#spot').classList.add('open');
+    document.querySelectorAll('#os button').forEach(function (b) { b.addEventListener('click', function () { setOS(b.dataset.os === 'mac'); }); });
+  } else {
+    new IntersectionObserver(function (e) { inView = e[0].isIntersecting; if (inView && idle) loop(); }, { threshold: 0.25 }).observe(demo);
+    setOS(isMac);
+  }
+})();
+</script>
+</body>
+</html>
