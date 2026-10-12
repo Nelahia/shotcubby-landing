@@ -3,9 +3,34 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>ShotCubby — Shot. Kept.</title>
-<meta name="description" content="ShotCubby catches every screenshot on macOS and Windows, files it in one folder, and lets you find any of them in two keystrokes.">
-<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%230C1216'/%3E%3Cg transform='translate(4 4)' fill='none' stroke='%23F4FBFC' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath stroke-width='2' d='M3 8V5.5A2.5 2.5 0 0 1 5.5 3H8M16 3h2.5A2.5 2.5 0 0 1 21 5.5V8M21 16v2.5a2.5 2.5 0 0 1-2.5 2.5H16M8 21H5.5A2.5 2.5 0 0 1 3 18.5V16'/%3E%3Cpath stroke-width='1.75' d='M9.5 7.25h5'/%3E%3C/g%3E%3Crect x='11' y='13.75' width='10' height='7.25' rx='1.75' fill='%23F4FBFC'/%3E%3C/svg%3E">
+<title>ShotCubby: Screenshot Organizer and Search for Mac and Windows</title>
+<meta name="description" content="ShotCubby saves every screenshot to one folder and lets you find, rename and copy any of them in two keystrokes. Free for macOS and Windows, no telemetry.">
+<meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1">
+<meta name="theme-color" content="#0A0D0F">
+<meta name="color-scheme" content="dark">
+<meta name="application-name" content="ShotCubby">
+<meta name="apple-mobile-web-app-title" content="ShotCubby">
+<link rel="canonical" href="https://shotcubby.com/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="ShotCubby">
+<meta property="og:locale" content="en_US">
+<meta property="og:url" content="https://shotcubby.com/">
+<meta property="og:title" content="ShotCubby: Screenshot Organizer and Search for Mac and Windows">
+<meta property="og:description" content="ShotCubby saves every screenshot to one folder and lets you find, rename and copy any of them in two keystrokes. Free for macOS and Windows, no telemetry.">
+<meta property="og:image" content="https://shotcubby.com/og-image.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="ShotCubby: Shot. Kept. Every screenshot filed in one folder and found in two keystrokes.">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="ShotCubby: Screenshot Organizer and Search for Mac and Windows">
+<meta name="twitter:description" content="ShotCubby saves every screenshot to one folder and lets you find, rename and copy any of them in two keystrokes. Free for macOS and Windows, no telemetry.">
+<meta name="twitter:image" content="https://shotcubby.com/og-image.png">
+<meta name="twitter:image:alt" content="ShotCubby: Shot. Kept.">
+<link rel="icon" href="/icon.svg" type="image/svg+xml">
+<link rel="icon" href="/icon-180.png" sizes="180x180" type="image/png">
+<link rel="apple-touch-icon" href="/icon-180.png">
+<link rel="manifest" href="/site.webmanifest">
+<script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"WebSite","@id":"https://shotcubby.com/#website","url":"https://shotcubby.com/","name":"ShotCubby","inLanguage":"en","description":"ShotCubby saves every screenshot to one folder and lets you find, rename and copy any of them in two keystrokes. Free for macOS and Windows, no telemetry."},{"@type":"SoftwareApplication","@id":"https://shotcubby.com/#app","name":"ShotCubby","url":"https://shotcubby.com/","description":"ShotCubby saves every screenshot to one folder and lets you find, rename and copy any of them in two keystrokes. Free for macOS and Windows, no telemetry.","applicationCategory":"UtilitiesApplication","applicationSubCategory":"Screenshot manager","operatingSystem":"macOS 14.0 or later, Windows","image":"https://shotcubby.com/og-image.png","downloadUrl":"https://github.com/Nelahia/shotcubby/releases/latest","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"author":{"@type":"Person","name":"Nelahia","url":"https://github.com/Nelahia"},"featureList":["Every screenshot saved to one folder","Instant search by name with a keyboard shortcut","Rename a capture in place, the file is renamed with it","Copy a capture from the search panel","Clipboard screenshots are kept too","Menu bar and system tray list of recent captures","Signed and notarized on macOS","No account, no telemetry"]}]}</script>
 <script defer src="https://cloud.umami.is/script.js" data-website-id="a917b733-95e4-4dba-9df5-6bb89d782b62"></script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -72,18 +97,19 @@ a{color:inherit;text-decoration:none}a:hover{color:inherit}
 <div class="lp os-mac" style="background: #0A0D0F; color: #F1F5F7; font-family: 'IBM Plex Sans', sans-serif; font-size: 16px; line-height: 1.5; padding: 0 20px">
 <div style="max-width: 1080px; margin: 0 auto; display: flex; flex-direction: column">
 
-<div style="display: flex; align-items: center; justify-content: space-between; gap: 16px; padding: 18px 0">
+<header style="display: flex; align-items: center; justify-content: space-between; gap: 16px; padding: 18px 0">
 <a href="#top" style="display: flex; align-items: center; gap: 10px">
 <div style="width: 30px; height: 30px; border-radius: 7px; background: #1A2126; box-shadow: inset 0 0 0 1px rgba(255,255,255,.1); color: #F4FBFC; display: flex; align-items: center; justify-content: center">
 <svg viewBox="0 0 24 24" style="width: 20px; height: 20px"><path class="gs" d="M3 8V5.5A2.5 2.5 0 0 1 5.5 3H8M16 3h2.5A2.5 2.5 0 0 1 21 5.5V8M21 16v2.5a2.5 2.5 0 0 1-2.5 2.5H16M8 21H5.5A2.5 2.5 0 0 1 3 18.5V16"></path><path class="gs gt" d="M9.5 7.25h5"></path><rect class="gf" x="7" y="9.75" width="10" height="7.25" rx="1.75"></rect></svg>
 </div>
 <div class="disp" style="font-size: 20px">ShotCubby</div>
 </a>
-<div class="nl"><a href="#search">Search</a><a href="#popover">Popover</a><a href="#shortcuts">Shortcuts</a><a href="#features">Features</a><a href="#install">Install</a></div>
-<a class="m bp" data-umami-event="download-mac" data-umami-event-position="nav" style="height: 36px; font-size: 14px; padding: 0 14px" href="https://github.com/Nelahia/shotcubby/releases/latest/download/ShotCubby.dmg">Download</a>
-<a class="w bp" data-umami-event="download-windows" data-umami-event-position="nav" style="height: 36px; font-size: 14px; padding: 0 14px" href="https://github.com/Nelahia/shotcubby/releases/latest/download/ShotCubby-Setup.exe">Download</a>
-</div>
+<nav class="nl" aria-label="Page sections"><a href="#search">Search</a><a href="#popover">Popover</a><a href="#shortcuts">Shortcuts</a><a href="#features">Features</a><a href="#install">Install</a></nav>
+<a class="m bp" data-umami-event="download-mac" data-umami-event-position="nav" aria-label="Download ShotCubby for macOS" style="height: 36px; font-size: 14px; padding: 0 14px" href="https://github.com/Nelahia/shotcubby/releases/latest/download/ShotCubby.dmg">Download</a>
+<a class="w bp" data-umami-event="download-windows" data-umami-event-position="nav" aria-label="Download ShotCubby for Windows" style="height: 36px; font-size: 14px; padding: 0 14px" href="https://github.com/Nelahia/shotcubby/releases/latest/download/ShotCubby-Setup.exe">Download</a>
+</header>
 
+<main style="display: contents">
 <div id="top" style="display: flex; flex-direction: column; align-items: center; text-align: center; gap: 22px; padding: 72px 0 48px">
 <div class="mono" style="font-size: 13px; color: #9AA8B1; background: #12171A; box-shadow: inset 0 0 0 1px rgba(255,255,255,.1); border-radius: 999px; padding: 6px 14px"><span id="version-badge" style="color: #35D6E6">v2.2.13</span> <span class="m">· signed and notarized</span><span class="w">· now on Windows</span></div>
 <h1 class="disp" style="margin: 0; font-size: clamp(60px, 11vw, 128px)">Shot. <span style="color: #6F7D87">Kept.</span></h1>
@@ -101,7 +127,7 @@ a{color:inherit;text-decoration:none}a:hover{color:inherit}
 <iframe id="demo-frame" src="demo.html?embed=1" title="ShotCubby in action: take a screenshot, search it, copy it and paste it" loading="lazy" scrolling="no" style="display: block; width: 100%; height: 760px; border: 0; background: transparent"></iframe>
 </div>
 
-<div id="search" style="position: relative; padding: 14px; width: 100%; max-width: 748px; box-sizing: border-box; margin: 0 auto 18px">
+<section id="search" aria-label="Search your screenshots" style="position: relative; padding: 14px; width: 100%; max-width: 748px; box-sizing: border-box; margin: 0 auto 18px">
 <div class="cb" style="top: 0; left: 0; border-right: 0; border-bottom: 0; border-top-left-radius: 8px"></div>
 <div class="cb" style="top: 0; right: 0; border-left: 0; border-bottom: 0; border-top-right-radius: 8px"></div>
 <div class="cb" style="bottom: 0; left: 0; border-right: 0; border-top: 0; border-bottom-left-radius: 8px"></div>
@@ -133,10 +159,10 @@ a{color:inherit;text-decoration:none}a:hover{color:inherit}
 <span style="margin-left: auto"><span class="kbd" style="font-size: 11px; padding: 1px 5px">esc</span>&nbsp; Close</span>
 </div>
 </div>
-</div>
+</section>
 <div style="text-align: center; font-size: 14px; line-height: 2; color: #9AA8B1; max-width: 620px; margin: 0 auto; padding: 0 0 104px">Press <span class="kbd"><span class="m">⌘</span><span class="w">Ctrl</span></span> <span class="kbd">/</span> in any app and this panel opens in the middle of your screen. Type a name, then <span class="kbd"><span class="m">⌘</span><span class="w">Ctrl</span></span> <span class="kbd">C</span> copies the image and <span class="kbd">↩</span> opens it. Try it here. The shortcut can be changed in Settings.</div>
 
-<div id="popover" style="display: flex; flex-direction: column; align-items: center; gap: 32px; padding: 0 0 104px">
+<section id="popover" style="display: flex; flex-direction: column; align-items: center; gap: 32px; padding: 0 0 104px">
 <div style="display: flex; flex-direction: column; align-items: center; text-align: center; gap: 12px; max-width: 640px">
 <div class="eye">In your <span class="m">menu bar</span><span class="w">system tray</span></div>
 <h2 class="disp" style="margin: 0; font-size: clamp(32px, 4.6vw, 50px)">Every shot, one click away.</h2>
@@ -244,9 +270,9 @@ a{color:inherit;text-decoration:none}a:hover{color:inherit}
 </div>
 </div>
 <div style="font-size: 14px; color: #9AA8B1; text-align: center">Try it: click a name in the popover and type. It also changes in the search panel above.</div>
-</div>
+</section>
 
-<div id="shortcuts" style="display: flex; flex-direction: column; align-items: center; gap: 32px; padding: 0 0 104px">
+<section id="shortcuts" style="display: flex; flex-direction: column; align-items: center; gap: 32px; padding: 0 0 104px">
 <div style="display: flex; flex-direction: column; align-items: center; text-align: center; gap: 12px; max-width: 620px">
 <div class="eye"><span class="m">No new shortcuts</span><span class="w">Familiar shortcuts</span></div>
 <h2 class="m disp" style="margin: 0; font-size: clamp(32px, 4.6vw, 50px)">Same keys. Different destination.</h2>
@@ -276,9 +302,9 @@ a{color:inherit;text-decoration:none}a:hover{color:inherit}
 </tbody>
 </table>
 </div>
-</div>
+</section>
 
-<div id="features" style="display: flex; flex-direction: column; align-items: center; gap: 32px; padding: 0 0 104px">
+<section id="features" style="display: flex; flex-direction: column; align-items: center; gap: 32px; padding: 0 0 104px">
 <div style="display: flex; flex-direction: column; align-items: center; text-align: center; gap: 12px; max-width: 660px">
 <div class="eye">Features</div>
 <h2 class="disp" style="margin: 0; font-size: clamp(32px, 4.6vw, 50px)">Keep the shot. Not the clutter.</h2>
@@ -339,9 +365,9 @@ a{color:inherit;text-decoration:none}a:hover{color:inherit}
 </div>
 
 </div>
-</div>
+</section>
 
-<div id="install" style="display: flex; flex-direction: column; align-items: center; gap: 32px; padding: 0 0 96px">
+<section id="install" style="display: flex; flex-direction: column; align-items: center; gap: 32px; padding: 0 0 96px">
 <div style="display: flex; flex-direction: column; align-items: center; text-align: center; gap: 12px">
 <div class="eye">Install</div>
 <h2 class="disp" style="margin: 0; font-size: clamp(32px, 4.6vw, 50px)">Free. Yours.</h2>
@@ -354,15 +380,16 @@ a{color:inherit;text-decoration:none}a:hover{color:inherit}
 <div class="w mono" style="font-size: 12px; color: #7C8A94; text-align: center">Installer on the latest GitHub release</div>
 <div class="m mono" style="font-size: 12px; color: #7C8A94; text-align: center">Requires macOS 14.0 (Sonoma) or later</div>
 </div>
-</div>
+</section>
 
-<div style="display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 16px; padding: 28px 0 40px; border-top: 1px solid rgba(255,255,255,.07); font-size: 14px; color: #9AA8B1">
+</main>
+<footer style="display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 16px; padding: 28px 0 40px; border-top: 1px solid rgba(255,255,255,.07); font-size: 14px; color: #9AA8B1">
 <div style="display: flex; flex-wrap: wrap; gap: 8px 22px">
-<a href="https://github.com/Nelahia">Nelahia</a>
+<a href="#features">Features</a><a href="#install">Download</a><a href="https://github.com/Nelahia/shotcubby" rel="noopener">ShotCubby on GitHub</a><a href="https://github.com/Nelahia/shotcubby/releases" rel="noopener">Release notes</a><a href="https://github.com/Nelahia" rel="noopener">Nelahia</a>
 </div>
 <div class="m mono" style="font-size: 12px; color: #7C8A94">ShotCubby · Swift 5.9 · SwiftUI · AppKit</div>
 <div class="w mono" style="font-size: 12px; color: #7C8A94">ShotCubby · Tauri · Rust</div>
-</div>
+</footer>
 
 </div>
 </div>
