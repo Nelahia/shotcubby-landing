@@ -441,12 +441,19 @@ a{color:inherit;text-decoration:none}a:hover{color:inherit}
     renderSpot();
   }
   var root = document.querySelector('.lp'), osBtns = document.querySelectorAll('button.os');
+  var versionBadge = document.getElementById('version-badge'), liveVersions = null;
+  // The badge shows the version the visitor's platform is served right now.
+  function showVersion() {
+    var version = liveVersions && liveVersions[root.classList.contains('os-win') ? 'windows' : 'mac'];
+    if (versionBadge && version) versionBadge.textContent = version;
+  }
   function setOS(os) {
     root.classList.remove('os-mac', 'os-win'); root.classList.add('os-' + os);
     osBtns.forEach(function (b) { b.classList.toggle('on', b.dataset.os === os); });
     // The embedded demo follows the same switch.
     var frame = document.getElementById('demo-frame');
     if (frame && frame.contentWindow) frame.contentWindow.postMessage({ type: 'os', mac: os === 'mac' }, location.origin);
+    showVersion();
   }
   // ...and tells the page how tall it needs to be.
   window.addEventListener('message', function (e) {
@@ -455,11 +462,17 @@ a{color:inherit;text-decoration:none}a:hover{color:inherit}
   });
   osBtns.forEach(function (b) { b.addEventListener('click', function () { setOS(b.dataset.os); }); });
   setOS(/Win/i.test(navigator.userAgent) ? 'win' : 'mac');
-  var versionBadge = document.getElementById('version-badge');
   if (versionBadge) {
     fetch('https://api.github.com/repos/Nelahia/shotcubby/releases/latest')
       .then(function (r) { return r.ok ? r.json() : null; })
-      .then(function (data) { if (data && data.tag_name) versionBadge.textContent = data.tag_name; })
+      .then(function (data) {
+        if (!data) return;
+        // The live release's description carries each platform's deployed version.
+        var marker = /<!-- shotcubby-live (\{.*?\}) -->/.exec(data.body || '');
+        if (marker) { try { liveVersions = JSON.parse(marker[1]); } catch (e) {} }
+        else if (/^v\d/.test(data.tag_name || '')) liveVersions = { mac: data.tag_name, windows: data.tag_name };
+        showVersion();
+      })
       .catch(function () {});
   }
 })();
