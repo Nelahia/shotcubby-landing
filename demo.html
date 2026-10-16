@@ -169,7 +169,7 @@ body.embed{background:transparent;overflow:hidden}
   <h1>See it work in fifteen seconds.</h1>
   <p class="sub">Preview of the scripted demo (not on the landing yet). Real UI, fake screenshots.</p>
   <div class="bar">
-    <div class="steps" id="steps"><span>1 · Capture</span><span>2 · Search</span><span>3 · Copy &amp; paste</span></div>
+    <div class="steps" id="steps"><span>1 · Capture</span><span>2 · AI names it</span><span>3 · Search</span><span>4 · Copy &amp; paste</span></div>
     <div class="os" id="os"><button data-os="mac">macOS</button><button data-os="win">Windows</button></div>
   </div>
 
@@ -232,6 +232,9 @@ body.embed{background:transparent;overflow:hidden}
   var isMac = !/Win/i.test(navigator.userAgent);
   var token = 0, inView = true, idle = true;
 
+  // The newest capture arrives with the system name, then AI naming renames it.
+  var RAW_NAME = 'Screenshot 2026-10-12 at 09.41.22.png', AI_NAME = 'Quarterly report overview.png';
+
   var ITEMS = [
     { n: 'Screenshot 2026-10-12 at 09.41.22.png', w: 'just now', k: 'page', fresh: true },
     { n: 'Screenshot 2026-10-12 at 09.12.05.png', w: '29 min ago', k: 'chart' },
@@ -285,6 +288,17 @@ body.embed{background:transparent;overflow:hidden}
       return '<div class="pr' + (r.fresh ? ' new' : '') + '"><div class="th">' + mock(r.k) + '</div><div><div class="nm">' + r.n + '</div><div class="wh">' + r.w + '</div></div></div>';
     }).join('');
   }
+  // The AI renames the newest row of the menu: "AI naming…", then the new name typed out.
+  async function aiRename(s) {
+    var nm = $('#plist .pr.new .nm'), wh = $('#plist .pr.new .wh');
+    wh.textContent = 'AI naming…'; wh.style.color = '#35D6E6';
+    await s(950);
+    ITEMS[0].n = POP[1].n = AI_NAME;
+    nm.style.color = '#35D6E6';
+    for (var k = 1; k <= AI_NAME.length; k++) { nm.textContent = AI_NAME.slice(0, k); await s(28); }
+    wh.textContent = 'just now'; wh.style.color = ''; nm.style.color = '';
+    await s(650);
+  }
   function cursorJump(x, y) { cursor.style.transition = 'none'; cursorTo(x, y); void cursor.offsetWidth; cursor.style.transition = ''; }
   function cursorTo(x, y) { cursor.style.transform = 'translate(' + x + 'px,' + y + 'px)'; }
 
@@ -319,10 +333,11 @@ body.embed{background:transparent;overflow:hidden}
 
   function setStep(i) {
     document.querySelectorAll('#steps span').forEach(function (s, idx) { s.classList.toggle('on', idx === i); });
-    $('#caption').textContent = ['Take a screenshot the way you always do — ShotCubby files it, and one click on the icon lists them all.', 'Open the search from anywhere with one shortcut.', 'Copy it — the panel closes at once — and paste it where you need it.'][i];
+    $('#caption').textContent = ['Take a screenshot the way you always do — ShotCubby files it, and one click on the icon lists them all.', 'AI reads the new capture and names it, with your own Claude or OpenAI key and your own naming convention.', 'Open the search from anywhere with one shortcut, and find it by its new name.', 'Copy it — the panel closes at once — and paste it where you need it.'][i];
   }
 
-  function reset() {
+  function reset(named) {
+    ITEMS[0].n = POP[1].n = named ? AI_NAME : RAW_NAME;
     zoomOut();
     $('#spot').classList.remove('open'); $('#pop').classList.remove('open'); $('#toast').classList.remove('go');
     renderPop();
@@ -369,18 +384,19 @@ body.embed{background:transparent;overflow:hidden}
     cursorTo(gp.x - 3, gp.y - 2); await s(550);
     clickCursor(); $(g).classList.add('press'); await s(80);
     $(g).classList.remove('press'); $('#pop').classList.add('open'); await s(550);
+    setStep(1); await aiRename(s);
     showKeys(keysFor('esc')); await s(150); await press(100); hideKeys();
     $('#pop').classList.remove('open'); cursor.classList.remove('on'); await s(120);
 
-    // 2 · search
-    setStep(1); renderList(0, true);
+    // 3 · search
+    setStep(2); renderList(0, true);
     showKeys(keysFor('open')); await s(250); await press(150); await s(80); hideKeys();
     $('#spot').classList.add('open'); zoom(panelRect, 1.6); await s(750);
     showKeys(keysFor('down')); await s(150); await press(110); renderList(1, true); await s(350);
     await press(110); renderList(2, true); await s(400); hideKeys();
 
-    // 3 · copy + paste
-    setStep(2); zoom(footRect, 2.2); await s(650);
+    // 4 · copy + paste
+    setStep(3); zoom(footRect, 2.2); await s(650);
     $('#copyHint').classList.add('hot'); showKeys(keysFor('copy')); await s(300); await press(160);
     var sp = $('#spot'); sp.classList.add('instant'); sp.classList.remove('open'); hideKeys();
     requestAnimationFrame(function () { sp.classList.remove('instant'); });
@@ -415,7 +431,7 @@ body.embed{background:transparent;overflow:hidden}
 
   if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
     isMac = !/Win/i.test(navigator.userAgent); stage.className = 'stage ' + (isMac ? 'mac' : 'win');
-    reset(); setStep(1); renderList(0, true); $('#spot').classList.add('open');
+    reset(true); setStep(2); renderList(0, true); $('#spot').classList.add('open');
     document.querySelectorAll('#os button').forEach(function (b) { b.addEventListener('click', function () { setOS(b.dataset.os === 'mac'); }); });
   } else {
     new IntersectionObserver(function (e) { inView = e[0].isIntersecting; if (inView && idle) loop(); }, { threshold: 0.25 }).observe(demo);
