@@ -67,6 +67,11 @@ a{color:inherit;text-decoration:none}a:hover{color:inherit}
 .card{background:#12171A;border-radius:16px;box-shadow:inset 0 0 0 1px rgba(255,255,255,.08);padding:26px;display:flex;flex-direction:column;gap:8px;min-width:0}
 .card h3{margin:0;font-size:17px;font-weight:600}
 .card p{margin:0;font-size:15px;color:#9AA8B1}
+.faq summary{cursor:pointer;font-size:17px;font-weight:600;list-style:none;display:flex;justify-content:space-between;gap:12px}
+.faq summary::-webkit-details-marker{display:none}
+.faq summary::after{content:'+';color:#35D6E6;font-family:'IBM Plex Mono',monospace}
+.faq details[open] summary::after{content:'\2212'}
+.faq details[open]{gap:12px}
 .wide{grid-column:span 2}
 @media(max-width:760px){.wide{grid-column:auto}}
 .tb td,.tb th{padding:14px 18px;text-align:left;border-bottom:1px solid rgba(255,255,255,.07)}
@@ -104,7 +109,7 @@ a{color:inherit;text-decoration:none}a:hover{color:inherit}
 </div>
 <div class="disp" style="font-size: 20px">ShotCubby</div>
 </a>
-<nav class="nl" aria-label="Page sections"><a href="#search">Search</a><a href="#popover">Popover</a><a href="#shortcuts">Shortcuts</a><a href="#features">Features</a></nav>
+<nav class="nl" aria-label="Page sections"><a href="#search">Search</a><a href="#popover">Popover</a><a href="#shortcuts">Shortcuts</a><a href="#how">How it works</a><a href="#features">Features</a><a href="#faq">FAQ</a></nav>
 <a class="m bp" data-umami-event="download-mac" data-umami-event-position="nav" aria-label="Download ShotCubby for macOS" style="height: 36px; font-size: 14px; padding: 0 14px" href="https://github.com/Nelahia/shotcubby/releases/latest/download/ShotCubby.dmg">Download</a>
 <a class="w bp" data-umami-event="download-windows" data-umami-event-position="nav" aria-label="Download ShotCubby for Windows" style="height: 36px; font-size: 14px; padding: 0 14px" href="https://github.com/Nelahia/shotcubby/releases/latest/download/ShotCubby-Setup.exe">Download</a>
 </header>
@@ -304,6 +309,19 @@ a{color:inherit;text-decoration:none}a:hover{color:inherit}
 </div>
 </section>
 
+<section id="how" style="display: flex; flex-direction: column; align-items: center; gap: 32px; padding: 0 0 104px">
+<div style="display: flex; flex-direction: column; align-items: center; text-align: center; gap: 12px; max-width: 620px">
+<div class="eye">How it works</div>
+<h2 class="disp" style="margin: 0; font-size: clamp(32px, 4.6vw, 50px)">Four steps. You only do the first.</h2>
+</div>
+<div style="align-self: stretch; display: grid; grid-template-columns: repeat(auto-fit, minmax(230px, 1fr)); gap: 14px">
+<div class="card"><div class="eye">01</div><h3>Take a screenshot</h3><p>Use the shortcuts you already know. Full screen, selection or clipboard, ShotCubby catches them all.</p></div>
+<div class="card"><div class="eye">02</div><h3>It files itself</h3><p>The capture lands in your ShotCubby folder, in a new folder for each day, before it can clutter your Desktop.</p></div>
+<div class="card"><div class="eye">03</div><h3>Find it in a click</h3><p>Press <span class="kbd"><span class="m">⌘</span><span class="w">Ctrl</span></span> <span class="kbd">/</span> for search, or click the <span class="m">menu bar</span><span class="w">tray</span> icon to browse every capture.</p></div>
+<div class="card"><div class="eye">04</div><h3>Rename or copy</h3><p>One click or one shortcut renames the file, or copies the image so you can paste it anywhere.</p></div>
+</div>
+</section>
+
 <section id="features" style="display: flex; flex-direction: column; align-items: center; gap: 32px; padding: 0 0 104px">
 <div style="display: flex; flex-direction: column; align-items: center; text-align: center; gap: 12px; max-width: 660px">
 <div class="eye">Features</div>
@@ -364,6 +382,22 @@ a{color:inherit;text-decoration:none}a:hover{color:inherit}
 <p>Swift 5.9, SwiftUI and AppKit with zero external dependencies. FSEvents watches your screenshot folder and the clipboard is checked every 0.8 s, so a capture is caught either way.</p>
 </div>
 
+</div>
+</section>
+
+<section id="faq" style="display: flex; flex-direction: column; align-items: center; gap: 32px; padding: 0 0 104px">
+<div style="display: flex; flex-direction: column; align-items: center; text-align: center; gap: 12px; max-width: 620px">
+<div class="eye">FAQ</div>
+<h2 class="disp" style="margin: 0; font-size: clamp(32px, 4.6vw, 50px)">Questions, answered.</h2>
+</div>
+<div class="faq" style="align-self: stretch; max-width: 760px; width: 100%; margin: 0 auto; display: flex; flex-direction: column; gap: 10px">
+<details class="card"><summary>Is ShotCubby really free?</summary><p>Yes. No account, no subscription, no paid tier.</p></details>
+<details class="card"><summary>Where are my screenshots stored?</summary><p>In a ShotCubby folder, organized in one new folder per day. Files stay on your computer, as plain images you can open anywhere.</p></details>
+<details class="card"><summary>Does it collect any data?</summary><p>No telemetry and no account. It works offline and your captures never leave your machine.</p></details>
+<details class="card"><summary>Which systems are supported?</summary><p>macOS 14.0 or later and Windows. The macOS build is signed and notarized by Apple.</p></details>
+<details class="card"><summary>How do I find an old screenshot?</summary><p>Press <span class="kbd"><span class="m">⌘</span><span class="w">Ctrl</span></span> <span class="kbd">/</span> to search by name, or click the <span class="m">menu bar</span><span class="w">tray</span> icon to see all your captures. The shortcut can be changed in Settings.</p></details>
+<details class="card"><summary>What happens when I rename a screenshot?</summary><p>The file on disk is renamed too, so <span class="m">Finder and Spotlight</span><span class="w">File Explorer and Windows Search</span> find it under its new name.</p></details>
+<details class="card"><summary>Are clipboard screenshots saved?</summary><p>Yes. Captures copied to the clipboard are saved as files, so the next copy does not erase them.</p></details>
 </div>
 </section>
 
