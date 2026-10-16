@@ -1,7 +1,7 @@
 {
   "name": "ShotCubby",
   "short_name": "ShotCubby",
-  "description": "Every screenshot filed in one folder and found in two keystrokes, on macOS and Windows.",
+  "description": "Every screenshot named by AI, filed in one folder and found in two keystrokes, on macOS and Windows.",
   "start_url": "/",
   "display": "browser",
   "background_color": "#0A0D0F",
