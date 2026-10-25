@@ -6,7 +6,7 @@
 <title>ShotCubby: AI Screenshot Organizer for Mac and Windows</title>
 <meta name="description" content="ShotCubby names every screenshot with AI, files it in one folder and finds it in two keystrokes. Use your own Claude or OpenAI key. Free for Mac and Windows.">
 <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1">
-<meta name="theme-color" content="#0A0D0F">
+<meta name="theme-color" content="#111522">
 <meta name="color-scheme" content="dark">
 <meta name="application-name" content="ShotCubby">
 <meta name="apple-mobile-web-app-title" content="ShotCubby">
@@ -37,7 +37,7 @@
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@75..100,600..800&family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600&display=swap">
 <style>
 html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
-body{margin:0;background:#0A0D0F}
+body{margin:0;background:#111522}
 a{color:inherit;text-decoration:none}a:hover{color:inherit}
 .lp button{font:inherit;color:inherit;border:0;background:none;cursor:pointer;padding:0}
 .gs{fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
@@ -46,30 +46,30 @@ a{color:inherit;text-decoration:none}a:hover{color:inherit}
 .i{width:16px;height:16px;fill:none;stroke:currentColor;stroke-width:1.75;stroke-linecap:round;stroke-linejoin:round;flex:none}
 .mono{font-family:'IBM Plex Mono',ui-monospace,monospace}
 .disp{font-family:'Archivo',sans-serif;font-stretch:80%;font-weight:800;letter-spacing:-.015em;line-height:1}
-.eye{font-family:'IBM Plex Mono',monospace;font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:#35D6E6}
-.kbd{display:inline-block;font-family:'IBM Plex Mono',monospace;font-size:13px;font-weight:500;color:#F1F5F7;background:#1F272C;border:1px solid rgba(255,255,255,.14);border-bottom-width:2px;border-radius:6px;padding:3px 8px;line-height:1.3}
-.nl{display:flex;gap:28px;font-size:14px;font-weight:500;color:#9AA8B1}
-.nl a:hover{color:#F1F5F7}
+.eye{font-family:'IBM Plex Mono',monospace;font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:#98A9C4}
+.kbd{display:inline-block;font-family:'IBM Plex Mono',monospace;font-size:13px;font-weight:500;color:#DCE3EF;background:#303D59;border:1px solid rgba(255,255,255,.14);border-bottom-width:2px;border-radius:6px;padding:3px 8px;line-height:1.3}
+.nl{display:flex;gap:28px;font-size:14px;font-weight:500;color:#98A9C4}
+.nl a:hover{color:#DCE3EF}
 @media(max-width:720px){.nl{display:none}}
-.bp{display:inline-flex;align-items:center;justify-content:center;gap:8px;height:44px;padding:0 20px;border-radius:10px;background:#F1F5F7;color:#0A0D0F;font-weight:600;font-size:15px}
-.bp:hover{background:#FFFFFF;color:#0A0D0F}
-.cb{position:absolute;width:20px;height:20px;border:2px solid #35D6E6}
+.bp{display:inline-flex;align-items:center;justify-content:center;gap:8px;height:44px;padding:0 20px;border-radius:10px;background:#DCE3EF;color:#111522;font-weight:600;font-size:15px}
+.bp:hover{background:#FFFFFF;color:#111522}
+.cb{position:absolute;width:20px;height:20px;border:2px solid #98A9C4}
 .th{position:relative;aspect-ratio:16/10;border-radius:7px;box-shadow:inset 0 0 0 1px rgba(255,255,255,.08);overflow:hidden}
-.k0{background:linear-gradient(rgba(255,255,255,.09),rgba(255,255,255,.09)) 0 0/100% 12px no-repeat,linear-gradient(rgba(255,255,255,.09),rgba(255,255,255,.09)) 12px 26px/52% 6px no-repeat,linear-gradient(rgba(255,255,255,.09),rgba(255,255,255,.09)) 12px 40px/74% 6px no-repeat,#232C32}
-.k1{background:linear-gradient(rgba(255,255,255,.09),rgba(255,255,255,.09)) 0 0/30% 100% no-repeat,linear-gradient(rgba(255,255,255,.09),rgba(255,255,255,.09)) 42% 18px/48% 30px no-repeat,#232C32}
-.k2{background:linear-gradient(rgba(53,214,230,.22),rgba(53,214,230,.22)) 50% 50%/62% 56% no-repeat,#232C32}
-.ov{position:absolute;inset:0;background:rgba(5,8,10,.6);box-shadow:inset 0 0 0 1.5px #35D6E6;border-radius:7px;display:flex;align-items:center;justify-content:center;gap:4px;opacity:0;transition:opacity .12s}
+.k0{background:linear-gradient(rgba(255,255,255,.09),rgba(255,255,255,.09)) 0 0/100% 12px no-repeat,linear-gradient(rgba(255,255,255,.09),rgba(255,255,255,.09)) 12px 26px/52% 6px no-repeat,linear-gradient(rgba(255,255,255,.09),rgba(255,255,255,.09)) 12px 40px/74% 6px no-repeat,#303D59}
+.k1{background:linear-gradient(rgba(255,255,255,.09),rgba(255,255,255,.09)) 0 0/30% 100% no-repeat,linear-gradient(rgba(255,255,255,.09),rgba(255,255,255,.09)) 42% 18px/48% 30px no-repeat,#303D59}
+.k2{background:linear-gradient(rgba(152,169,196,.22),rgba(152,169,196,.22)) 50% 50%/62% 56% no-repeat,#303D59}
+.ov{position:absolute;inset:0;background:rgba(17,21,34,.6);box-shadow:inset 0 0 0 1.5px #98A9C4;border-radius:7px;display:flex;align-items:center;justify-content:center;gap:4px;opacity:0;transition:opacity .12s}
 .sh:hover .ov{opacity:1}
 .ov span{width:28px;height:28px;border-radius:7px;background:rgba(255,255,255,.14);color:#FFFFFF;display:flex;align-items:center;justify-content:center}
-.rn{font-family:'IBM Plex Mono',monospace;font-size:11px;color:#C5CFD6;width:100%;box-sizing:border-box;border:0;border-radius:5px;padding:4px 6px;background:transparent;outline:none;text-overflow:ellipsis;cursor:text}
+.rn{font-family:'IBM Plex Mono',monospace;font-size:11px;color:#DCE3EF;width:100%;box-sizing:border-box;border:0;border-radius:5px;padding:4px 6px;background:transparent;outline:none;text-overflow:ellipsis;cursor:text}
 .rn:hover{background:rgba(255,255,255,.07)}
-.rn:focus{background:#0A0D0F;color:#FFFFFF;box-shadow:0 0 0 2px #35D6E6}
-.card{background:#12171A;border-radius:16px;box-shadow:inset 0 0 0 1px rgba(255,255,255,.08);padding:26px;display:flex;flex-direction:column;gap:8px;min-width:0}
+.rn:focus{background:#111522;color:#FFFFFF;box-shadow:0 0 0 2px #98A9C4}
+.card{background:#1E263B;border-radius:16px;box-shadow:inset 0 0 0 1px rgba(255,255,255,.08);padding:26px;display:flex;flex-direction:column;gap:8px;min-width:0}
 .card h3{margin:0;font-size:17px;font-weight:600}
-.card p{margin:0;font-size:15px;color:#9AA8B1}
+.card p{margin:0;font-size:15px;color:#98A9C4}
 .faq summary{cursor:pointer;font-size:17px;font-weight:600;list-style:none;display:flex;justify-content:space-between;gap:12px}
 .faq summary::-webkit-details-marker{display:none}
-.faq summary::after{content:'+';color:#35D6E6;font-family:'IBM Plex Mono',monospace}
+.faq summary::after{content:'+';color:#98A9C4;font-family:'IBM Plex Mono',monospace}
 .faq details[open] summary::after{content:'\2212'}
 .faq details[open]{gap:12px}
 .wide{grid-column:span 2}
@@ -77,42 +77,42 @@ a{color:inherit;text-decoration:none}a:hover{color:inherit}
 .tb td,.tb th{padding:14px 18px;text-align:left;border-bottom:1px solid rgba(255,255,255,.07)}
 .tb tr:last-child td{border-bottom:0}
 .tb td:first-child{white-space:nowrap}
-.tb th{font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.08em;text-transform:uppercase;font-weight:500;color:#9AA8B1}
+.tb th{font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.08em;text-transform:uppercase;font-weight:500;color:#98A9C4}
 .kv{display:flex;justify-content:space-between;gap:12px;font-size:14px;padding:9px 0;border-bottom:1px solid rgba(255,255,255,.07)}
 .kv:last-child{border-bottom:0}
 .fr{display:flex;align-items:center;gap:10px;padding:7px 12px;font-size:12px;border-bottom:1px solid rgba(255,255,255,.05)}
-.sq{flex:1;min-width:0;border:0;outline:none;background:transparent;color:#F1F5F7;font:inherit;font-size:20px}
-.sq::placeholder{color:#7C8A94}
+.sq{flex:1;min-width:0;border:0;outline:none;background:transparent;color:#DCE3EF;font:inherit;font-size:20px}
+.sq::placeholder{color:#98A9C4}
 .srow{display:flex;align-items:center;gap:10px;width:100%;padding:6px 8px;border-radius:8px;box-sizing:border-box;text-align:left}
 .lp .srow{padding:6px 8px}
 .lp .srow:hover{background:rgba(255,255,255,.07)}
-.lp .srow.on{background:rgba(53,214,230,.2)}
-.p0{background:linear-gradient(rgba(255,255,255,.09),rgba(255,255,255,.09)) 0 0/100% 12% no-repeat,linear-gradient(rgba(255,255,255,.09),rgba(255,255,255,.09)) 8% 26%/52% 6% no-repeat,linear-gradient(rgba(255,255,255,.09),rgba(255,255,255,.09)) 8% 42%/74% 6% no-repeat,#232C32}
-.p1{background:linear-gradient(rgba(255,255,255,.09),rgba(255,255,255,.09)) 0 0/30% 100% no-repeat,linear-gradient(rgba(255,255,255,.09),rgba(255,255,255,.09)) 62% 22%/48% 34% no-repeat,#232C32}
-.p2{background:linear-gradient(rgba(53,214,230,.22),rgba(53,214,230,.22)) 50% 50%/62% 56% no-repeat,#232C32}
+.lp .srow.on{background:rgba(152,169,196,.2)}
+.p0{background:linear-gradient(rgba(255,255,255,.09),rgba(255,255,255,.09)) 0 0/100% 12% no-repeat,linear-gradient(rgba(255,255,255,.09),rgba(255,255,255,.09)) 8% 26%/52% 6% no-repeat,linear-gradient(rgba(255,255,255,.09),rgba(255,255,255,.09)) 8% 42%/74% 6% no-repeat,#303D59}
+.p1{background:linear-gradient(rgba(255,255,255,.09),rgba(255,255,255,.09)) 0 0/30% 100% no-repeat,linear-gradient(rgba(255,255,255,.09),rgba(255,255,255,.09)) 62% 22%/48% 34% no-repeat,#303D59}
+.p2{background:linear-gradient(rgba(152,169,196,.22),rgba(152,169,196,.22)) 50% 50%/62% 56% no-repeat,#303D59}
 .spv{flex:1 1 280px;min-width:0;padding:16px;display:flex;flex-direction:column;gap:12px;border-left:1px solid rgba(255,255,255,.08)}
 .spl{flex:0 0 290px}
 @media(max-width:640px){.spv{display:none}.spl{flex:1 1 auto}}
 .air{display:flex;align-items:center;gap:14px;padding:14px 18px;border-bottom:1px solid rgba(255,255,255,.07)}
 .air:last-child{border-bottom:0}
 .air .th{width:52px;flex:none}
-.ai-name{flex:1;min-width:0;font-family:'IBM Plex Mono',monospace;font-size:14px;overflow-wrap:anywhere;color:#F1F5F7}
-.ai-name.raw{color:#7C8A94}
-.air.busy .ai-name{color:#35D6E6;animation:aipulse .8s ease-in-out infinite}
+.ai-name{flex:1;min-width:0;font-family:'IBM Plex Mono',monospace;font-size:14px;overflow-wrap:anywhere;color:#DCE3EF}
+.ai-name.raw{color:#98A9C4}
+.air.busy .ai-name{color:#98A9C4;animation:aipulse .8s ease-in-out infinite}
 @keyframes aipulse{50%{opacity:.45}}
 @media(prefers-reduced-motion:reduce){.air.busy .ai-name{animation:none}}
 .os-mac .w,.os-win .m{display:none !important}
-.lp .os{height:30px;padding:0 16px;border-radius:7px;font-size:13px;font-weight:600;color:#9AA8B1}
-.lp .os.on{background:#F1F5F7;color:#0A0D0F}
+.lp .os{height:30px;padding:0 16px;border-radius:7px;font-size:13px;font-weight:600;color:#98A9C4}
+.lp .os.on{background:#DCE3EF;color:#111522}
 </style>
 </head>
 <body>
-<div class="lp os-mac" style="background: #0A0D0F; color: #F1F5F7; font-family: 'IBM Plex Sans', sans-serif; font-size: 16px; line-height: 1.5; padding: 0 20px">
+<div class="lp os-mac" style="background: #111522; color: #DCE3EF; font-family: 'IBM Plex Sans', sans-serif; font-size: 16px; line-height: 1.5; padding: 0 20px">
 <div style="max-width: 1080px; margin: 0 auto; display: flex; flex-direction: column">
 
 <header style="display: flex; align-items: center; justify-content: space-between; gap: 16px; padding: 18px 0">
 <a href="#top" style="display: flex; align-items: center; gap: 10px">
-<div style="width: 30px; height: 30px; border-radius: 7px; background: #1A2126; box-shadow: inset 0 0 0 1px rgba(255,255,255,.1); color: #F4FBFC; display: flex; align-items: center; justify-content: center">
+<div style="width: 30px; height: 30px; border-radius: 7px; background: #1E263B; box-shadow: inset 0 0 0 1px rgba(255,255,255,.1); color: #DCE3EF; display: flex; align-items: center; justify-content: center">
 <svg viewBox="0 0 24 24" style="width: 20px; height: 20px"><path class="gs" d="M3 8V5.5A2.5 2.5 0 0 1 5.5 3H8M16 3h2.5A2.5 2.5 0 0 1 21 5.5V8M21 16v2.5a2.5 2.5 0 0 1-2.5 2.5H16M8 21H5.5A2.5 2.5 0 0 1 3 18.5V16"></path><path class="gs gt" d="M9.5 7.25h5"></path><rect class="gf" x="7" y="9.75" width="10" height="7.25" rx="1.75"></rect></svg>
 </div>
 <div class="disp" style="font-size: 20px">ShotCubby</div>
@@ -124,17 +124,17 @@ a{color:inherit;text-decoration:none}a:hover{color:inherit}
 
 <main style="display: contents">
 <div id="top" style="display: flex; flex-direction: column; align-items: center; text-align: center; gap: 22px; padding: 72px 0 48px">
-<a href="#ai" class="mono" style="display: inline-flex; align-items: center; gap: 8px; font-size: 13px; color: #9AA8B1; background: #12171A; box-shadow: inset 0 0 0 1px rgba(53,214,230,.35); border-radius: 999px; padding: 6px 14px"><svg class="i" viewBox="0 0 24 24" style="width: 14px; height: 14px; color: #35D6E6"><path d="M12 3.5l1.9 5.1 5.1 1.9-5.1 1.9L12 17.5l-1.9-5.1L5 10.5l5.1-1.9z"></path><path d="M18.5 16.5l.7 1.8 1.8.7-1.8.7-.7 1.8-.7-1.8-1.8-.7 1.8-.7z"></path></svg><span style="color: #35D6E6">New</span> AI naming <span id="version-badge" style="color: #7C8A94">v2.2.13</span></a>
+<a href="#ai" class="mono" style="display: inline-flex; align-items: center; gap: 8px; font-size: 13px; color: #98A9C4; background: #1E263B; box-shadow: inset 0 0 0 1px rgba(152,169,196,.35); border-radius: 999px; padding: 6px 14px"><svg class="i" viewBox="0 0 24 24" style="width: 14px; height: 14px; color: #98A9C4"><path d="M12 3.5l1.9 5.1 5.1 1.9-5.1 1.9L12 17.5l-1.9-5.1L5 10.5l5.1-1.9z"></path><path d="M18.5 16.5l.7 1.8 1.8.7-1.8.7-.7 1.8-.7-1.8-1.8-.7 1.8-.7z"></path></svg><span style="color: #98A9C4">New</span> AI naming <span id="version-badge" style="color: #98A9C4">v2.2.13</span></a>
 <div class="eye">The AI screenshot organizer for <span class="m">Mac</span><span class="w">Windows</span></div>
-<h1 class="disp" style="margin: 0; font-size: clamp(60px, 11vw, 128px)">Shot. <span style="color: #35D6E6">Named.</span> <span style="color: #6F7D87">Kept.</span></h1>
-<p style="margin: 0; font-size: 19px; color: #9AA8B1; max-width: 54ch">ShotCubby sits in your <span class="m">menu bar</span><span class="w">system tray</span>, catches every screenshot and <strong style="color: #F1F5F7; font-weight: 600">names it with AI</strong>: "Stripe dashboard revenue chart", not "Screenshot 2026-10-16 at 09.12.44". Each one is filed in one folder before it touches your Desktop, and any of them is two keystrokes away.</p>
-<div style="display: flex; gap: 2px; padding: 2px; background: #12171A; border-radius: 9px; box-shadow: inset 0 0 0 1px rgba(255,255,255,.1)"><button class="os on" data-os="mac" type="button">macOS</button><button class="os" data-os="win" type="button">Windows</button></div>
+<h1 class="disp" style="margin: 0; font-size: clamp(60px, 11vw, 128px)">Shot. <span style="color: #98A9C4">Named.</span> <span style="color: #536684">Kept.</span></h1>
+<p style="margin: 0; font-size: 19px; color: #98A9C4; max-width: 54ch">ShotCubby sits in your <span class="m">menu bar</span><span class="w">system tray</span>, catches every screenshot and <strong style="color: #DCE3EF; font-weight: 600">names it with AI</strong>: "Stripe dashboard revenue chart", not "Screenshot 2026-10-16 at 09.12.44". Each one is filed in one folder before it touches your Desktop, and any of them is two keystrokes away.</p>
+<div style="display: flex; gap: 2px; padding: 2px; background: #1E263B; border-radius: 9px; box-shadow: inset 0 0 0 1px rgba(255,255,255,.1)"><button class="os on" data-os="mac" type="button">macOS</button><button class="os" data-os="win" type="button">Windows</button></div>
 <div style="display: flex; flex-wrap: wrap; justify-content: center; gap: 10px; padding-top: 6px">
 <a class="m bp" data-umami-event="download-mac" data-umami-event-position="hero" href="https://github.com/Nelahia/shotcubby/releases/latest/download/ShotCubby.dmg">Download ShotCubby.dmg</a>
 <a class="w bp" data-umami-event="download-windows" data-umami-event-position="hero" href="https://github.com/Nelahia/shotcubby/releases/latest/download/ShotCubby-Setup.exe">Download for Windows</a>
 </div>
-<div class="m mono" style="font-size: 13px; color: #7C8A94">macOS 14.0+ · free · Claude or OpenAI, your key · no telemetry</div>
-<div class="w mono" style="font-size: 13px; color: #7C8A94">Windows · free · Claude or OpenAI, your key · no telemetry</div>
+<div class="m mono" style="font-size: 13px; color: #98A9C4">macOS 14.0+ · free · Claude or OpenAI, your key · no telemetry</div>
+<div class="w mono" style="font-size: 13px; color: #98A9C4">Windows · free · Claude or OpenAI, your key · no telemetry</div>
 </div>
 
 <div id="demo" style="width: 100%; max-width: 1000px; margin: 0 auto; padding: 0 0 88px; overflow-anchor: none">
@@ -144,15 +144,15 @@ a{color:inherit;text-decoration:none}a:hover{color:inherit}
 <section id="ai" aria-labelledby="ai-title" style="display: flex; flex-direction: column; align-items: center; gap: 32px; padding: 0 0 104px">
 <div style="display: flex; flex-direction: column; align-items: center; text-align: center; gap: 12px; max-width: 700px">
 <div class="eye">AI naming · new</div>
-<h2 id="ai-title" class="disp" style="margin: 0; font-size: clamp(32px, 4.6vw, 50px)">Your screenshots, <span style="color: #35D6E6">named by AI</span>.</h2>
-<p style="margin: 0; color: #9AA8B1">Turn on AI naming and ShotCubby reads each new screenshot, then gives it a clear name: which app it is, what the page shows. Bring your own Claude or OpenAI key, and set your own naming convention.</p>
+<h2 id="ai-title" class="disp" style="margin: 0; font-size: clamp(32px, 4.6vw, 50px)">Your screenshots, <span style="color: #98A9C4">named by AI</span>.</h2>
+<p style="margin: 0; color: #98A9C4">Turn on AI naming and ShotCubby reads each new screenshot, then gives it a clear name: which app it is, what the page shows. Bring your own Claude or OpenAI key, and set your own naming convention.</p>
 </div>
 
 <div class="card" style="align-self: stretch; max-width: 760px; width: 100%; margin: 0 auto; padding: 0; overflow: hidden; gap: 0">
 <div style="display: flex; align-items: center; gap: 10px; padding: 14px 18px; border-bottom: 1px solid rgba(255,255,255,.07); background: rgba(255,255,255,.03)">
-<svg class="i" viewBox="0 0 24 24" style="color: #35D6E6"><path d="M12 3.5l1.9 5.1 5.1 1.9-5.1 1.9L12 17.5l-1.9-5.1L5 10.5l5.1-1.9z"></path><path d="M18.5 16.5l.7 1.8 1.8.7-1.8.7-.7 1.8-.7-1.8-1.8-.7 1.8-.7z"></path></svg>
+<svg class="i" viewBox="0 0 24 24" style="color: #98A9C4"><path d="M12 3.5l1.9 5.1 5.1 1.9-5.1 1.9L12 17.5l-1.9-5.1L5 10.5l5.1-1.9z"></path><path d="M18.5 16.5l.7 1.8 1.8.7-1.8.7-.7 1.8-.7-1.8-1.8-.7 1.8-.7z"></path></svg>
 <span style="font-weight: 600">AI naming</span>
-<span class="mono" style="margin-left: auto; font-size: 12px; color: #35D6E6; background: rgba(53,214,230,.14); border-radius: 999px; padding: 3px 10px">on</span>
+<span class="mono" style="margin-left: auto; font-size: 12px; color: #98A9C4; background: rgba(152,169,196,.14); border-radius: 999px; padding: 3px 10px">on</span>
 </div>
 <div id="ai-rows" role="img" aria-label="Four screenshots renamed by AI, for example Screenshot 2026-10-16 at 09.12.44 becomes Stripe dashboard revenue chart">
 <div class="air" data-to="Stripe dashboard revenue chart.png"><div class="th k0"></div><div class="ai-name raw">Screenshot 2026-10-16 at 09.12.44.png</div></div>
@@ -164,18 +164,18 @@ a{color:inherit;text-decoration:none}a:hover{color:inherit}
 
 <div style="align-self: stretch; display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 14px">
 <div class="card">
-<div style="width: 34px; height: 34px; border-radius: 8px; background: #1F272C; display: flex; align-items: center; justify-content: center; margin-bottom: 10px"><svg class="i" viewBox="0 0 24 24"><circle cx="8" cy="15" r="4"></circle><path d="M11 12l9-9M16 7l3 3"></path></svg></div>
+<div style="width: 34px; height: 34px; border-radius: 8px; background: #303D59; display: flex; align-items: center; justify-content: center; margin-bottom: 10px"><svg class="i" viewBox="0 0 24 24"><circle cx="8" cy="15" r="4"></circle><path d="M11 12l9-9M16 7l3 3"></path></svg></div>
 <h3>Bring your own key</h3>
 <p>Use Claude (Anthropic) or OpenAI. It needs an API key, not a Claude or ChatGPT subscription: create one in your developer account and add a few dollars of credit. A screenshot costs a fraction of a cent. The key lives in the <span class="m">macOS Keychain</span><span class="w">Windows Credential Manager</span>, never in a file.</p>
 </div>
 <div class="card">
-<div style="width: 34px; height: 34px; border-radius: 8px; background: #1F272C; display: flex; align-items: center; justify-content: center; margin-bottom: 10px"><svg class="i" viewBox="0 0 24 24"><path d="M4 6h16M4 12h10M4 18h6"></path></svg></div>
+<div style="width: 34px; height: 34px; border-radius: 8px; background: #303D59; display: flex; align-items: center; justify-content: center; margin-bottom: 10px"><svg class="i" viewBox="0 0 24 24"><path d="M4 6h16M4 12h10M4 18h6"></path></svg></div>
 <h3>Your naming convention</h3>
 <p>Tell the AI how you want files named. Your instructions win over its defaults.</p>
-<div class="mono" style="font-size: 12px; background: #0A0D0F; border-radius: 8px; box-shadow: inset 0 0 0 1px rgba(255,255,255,.08); padding: 10px 12px; color: #9AA8B1; margin-top: 4px">“lowercase kebab-case, start with the app name, in English”<div style="color: #35D6E6; padding-top: 6px">figma-onboarding-flow-step-3.png</div></div>
+<div class="mono" style="font-size: 12px; background: #111522; border-radius: 8px; box-shadow: inset 0 0 0 1px rgba(255,255,255,.08); padding: 10px 12px; color: #98A9C4; margin-top: 4px">“lowercase kebab-case, start with the app name, in English”<div style="color: #98A9C4; padding-top: 6px">figma-onboarding-flow-step-3.png</div></div>
 </div>
 <div class="card">
-<div style="width: 34px; height: 34px; border-radius: 8px; background: #1F272C; display: flex; align-items: center; justify-content: center; margin-bottom: 10px"><svg class="i" viewBox="0 0 24 24"><rect x="5" y="11" width="14" height="9" rx="2"></rect><path d="M8 11V8a4 4 0 0 1 8 0v3"></path></svg></div>
+<div style="width: 34px; height: 34px; border-radius: 8px; background: #303D59; display: flex; align-items: center; justify-content: center; margin-bottom: 10px"><svg class="i" viewBox="0 0 24 24"><rect x="5" y="11" width="14" height="9" rx="2"></rect><path d="M8 11V8a4 4 0 0 1 8 0v3"></path></svg></div>
 <h3>Private by design</h3>
 <p>Off until you turn it on. Then only a downscaled copy of each new screenshot goes to the provider you picked. No ShotCubby server, no account, no telemetry.</p>
 </div>
@@ -187,26 +187,26 @@ a{color:inherit;text-decoration:none}a:hover{color:inherit}
 <div class="cb" style="top: 0; right: 0; border-left: 0; border-bottom: 0; border-top-right-radius: 8px"></div>
 <div class="cb" style="bottom: 0; left: 0; border-right: 0; border-top: 0; border-bottom-left-radius: 8px"></div>
 <div class="cb" style="bottom: 0; right: 0; border-left: 0; border-top: 0; border-bottom-right-radius: 8px"></div>
-<div style="width: 100%; max-width: 720px; background: #14191D; border-radius: 16px; box-shadow: 0 0 0 1px rgba(255,255,255,.12), 0 30px 70px -24px rgba(0,0,0,.9); overflow: hidden; font-family: -apple-system, 'SF Pro Text', system-ui, sans-serif; font-size: 13px">
+<div style="width: 100%; max-width: 720px; background: #111522; border-radius: 16px; box-shadow: 0 0 0 1px rgba(255,255,255,.12), 0 30px 70px -24px rgba(0,0,0,.9); overflow: hidden; font-family: -apple-system, 'SF Pro Text', system-ui, sans-serif; font-size: 13px">
 <div style="height: 58px; display: flex; align-items: center; gap: 12px; padding: 0 18px; border-bottom: 1px solid rgba(255,255,255,.08)">
-<svg viewBox="0 0 24 24" style="width: 22px; height: 22px; flex: none; color: #35D6E6"><path class="gs" d="M3 8V5.5A2.5 2.5 0 0 1 5.5 3H8M16 3h2.5A2.5 2.5 0 0 1 21 5.5V8M21 16v2.5a2.5 2.5 0 0 1-2.5 2.5H16M8 21H5.5A2.5 2.5 0 0 1 3 18.5V16"></path><path class="gs gt" d="M9.5 7.25h5"></path><rect class="gf" x="7" y="9.75" width="10" height="7.25" rx="1.75"></rect></svg>
+<svg viewBox="0 0 24 24" style="width: 22px; height: 22px; flex: none; color: #98A9C4"><path class="gs" d="M3 8V5.5A2.5 2.5 0 0 1 5.5 3H8M16 3h2.5A2.5 2.5 0 0 1 21 5.5V8M21 16v2.5a2.5 2.5 0 0 1-2.5 2.5H16M8 21H5.5A2.5 2.5 0 0 1 3 18.5V16"></path><path class="gs gt" d="M9.5 7.25h5"></path><rect class="gf" x="7" y="9.75" width="10" height="7.25" rx="1.75"></rect></svg>
 <input class="sq" aria-label="Search screenshots" placeholder="Search screenshots" id="sp-q" spellcheck="false">
-<div class="mono" style="font-size: 12px; color: #9AA8B1; background: rgba(255,255,255,.1); border-radius: 999px; padding: 2px 8px" id="sp-count">7</div>
+<div class="mono" style="font-size: 12px; color: #98A9C4; background: rgba(255,255,255,.1); border-radius: 999px; padding: 2px 8px" id="sp-count">7</div>
 </div>
 <div style="display: flex; height: 320px">
 <div class="spl" style="min-width: 0; overflow-y: auto; padding: 8px; box-sizing: border-box; display: flex; flex-direction: column; gap: 2px">
 <div id="sp-rows" style="display: contents"></div>
-<div id="sp-empty" hidden style="padding: 40px 12px; text-align: center; color: #9AA8B1">No screenshot with that name</div>
+<div id="sp-empty" hidden style="padding: 40px 12px; text-align: center; color: #98A9C4">No screenshot with that name</div>
 </div>
 <div class="spv">
 <div id="sp-th" class="p2" style="flex: 1; min-height: 0; border-radius: 8px; box-shadow: inset 0 0 0 1px rgba(255,255,255,.08)"></div>
 <div style="display: flex; flex-direction: column; gap: 3px">
 <div class="mono" style="font-size: 13px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis" id="sp-file"></div>
-<div style="font-size: 12px; color: #9AA8B1" id="sp-meta"></div>
+<div style="font-size: 12px; color: #98A9C4" id="sp-meta"></div>
 </div>
 </div>
 </div>
-<div style="display: flex; flex-wrap: wrap; align-items: center; gap: 6px 16px; padding: 9px 16px; border-top: 1px solid rgba(255,255,255,.08); font-size: 12px; color: #9AA8B1">
+<div style="display: flex; flex-wrap: wrap; align-items: center; gap: 6px 16px; padding: 9px 16px; border-top: 1px solid rgba(255,255,255,.08); font-size: 12px; color: #98A9C4">
 <span><span class="kbd" style="font-size: 11px; padding: 1px 5px">↩</span>&nbsp; Preview</span>
 <span><span class="kbd" style="font-size: 11px; padding: 1px 5px"><span class="m">⌘C</span><span class="w">Ctrl C</span></span>&nbsp; Copy</span>
 <span><span class="kbd" style="font-size: 11px; padding: 1px 5px"><span class="m">⌘R</span><span class="w">Ctrl R</span></span>&nbsp; Reveal</span>
@@ -215,18 +215,18 @@ a{color:inherit;text-decoration:none}a:hover{color:inherit}
 </div>
 </div>
 </section>
-<div style="text-align: center; font-size: 14px; line-height: 2; color: #9AA8B1; max-width: 620px; margin: 0 auto; padding: 0 0 104px">Press <span class="kbd"><span class="m">⌘</span><span class="w">Ctrl</span></span> <span class="kbd">/</span> in any app and this panel opens in the middle of your screen. Type a name, then <span class="kbd"><span class="m">⌘</span><span class="w">Ctrl</span></span> <span class="kbd">C</span> copies the image and <span class="kbd">↩</span> opens it. Try it here. The shortcut can be changed in Settings.</div>
+<div style="text-align: center; font-size: 14px; line-height: 2; color: #98A9C4; max-width: 620px; margin: 0 auto; padding: 0 0 104px">Press <span class="kbd"><span class="m">⌘</span><span class="w">Ctrl</span></span> <span class="kbd">/</span> in any app and this panel opens in the middle of your screen. Type a name, then <span class="kbd"><span class="m">⌘</span><span class="w">Ctrl</span></span> <span class="kbd">C</span> copies the image and <span class="kbd">↩</span> opens it. Try it here. The shortcut can be changed in Settings.</div>
 
 <section id="popover" style="display: flex; flex-direction: column; align-items: center; gap: 32px; padding: 0 0 104px">
 <div style="display: flex; flex-direction: column; align-items: center; text-align: center; gap: 12px; max-width: 640px">
 <div class="eye">In your <span class="m">menu bar</span><span class="w">system tray</span></div>
 <h2 class="disp" style="margin: 0; font-size: clamp(32px, 4.6vw, 50px)">Every shot, one click away.</h2>
-<p style="margin: 0; color: #9AA8B1">Click the <span class="m">menu bar</span><span class="w">tray</span> icon to see your latest captures. Click a name to rename it, and the file in the folder is renamed with it.</p>
+<p style="margin: 0; color: #98A9C4">Click the <span class="m">menu bar</span><span class="w">tray</span> icon to see your latest captures. Click a name to rename it, and the file in the folder is renamed with it.</p>
 </div>
 <div style="align-self: stretch">
 <div style="position: relative; padding: 14px; margin-bottom: 14px">
-<div style="background: #10161A; border-radius: 14px; box-shadow: inset 0 0 0 1px rgba(255,255,255,.08); overflow: hidden; font-family: -apple-system, 'SF Pro Text', system-ui, sans-serif; font-size: 13px">
-<div style="height: 30px; background: rgba(255,255,255,.05); display: flex; align-items: center; justify-content: flex-end; gap: 14px; padding: 0 16px; color: #C5CFD6; font-size: 12px; font-weight: 500">
+<div style="background: #111522; border-radius: 14px; box-shadow: inset 0 0 0 1px rgba(255,255,255,.08); overflow: hidden; font-family: -apple-system, 'SF Pro Text', system-ui, sans-serif; font-size: 13px">
+<div style="height: 30px; background: rgba(255,255,255,.05); display: flex; align-items: center; justify-content: flex-end; gap: 14px; padding: 0 16px; color: #DCE3EF; font-size: 12px; font-weight: 500">
 <svg viewBox="0 0 24 24" style="width: 16px; height: 16px"><circle class="gs" cx="11" cy="11" r="6.5"></circle><path class="gs" d="M16 16l4.5 4.5"></path></svg>
 <div style="background: rgba(255,255,255,.16); border-radius: 5px; padding: 3px 8px; display: flex; color: #FFFFFF">
 <svg viewBox="0 0 24 24" style="width: 17px; height: 17px"><path class="gs" d="M3 8V5.5A2.5 2.5 0 0 1 5.5 3H8M16 3h2.5A2.5 2.5 0 0 1 21 5.5V8M21 16v2.5a2.5 2.5 0 0 1-2.5 2.5H16M8 21H5.5A2.5 2.5 0 0 1 3 18.5V16"></path><path class="gs gt" d="M9.5 7.25h5"></path><rect class="gf" x="7" y="9.75" width="10" height="7.25" rx="1.75"></rect></svg>
@@ -235,42 +235,42 @@ a{color:inherit;text-decoration:none}a:hover{color:inherit}
 </div>
 <div style="display: flex; flex-wrap: wrap; align-items: flex-start; justify-content: flex-end; gap: 24px; padding: 10px 24px 32px">
 
-<div style="flex: 1 1 340px; min-width: 0; margin-top: 44px; background: #171D21; border-radius: 12px; box-shadow: 0 0 0 1px rgba(255,255,255,.1), 0 24px 48px -20px rgba(0,0,0,.7); overflow: hidden">
-<div style="display: flex; align-items: center; gap: 12px; padding: 11px 12px; background: #1E262B; border-bottom: 1px solid rgba(255,255,255,.07)">
-<div style="display: flex; gap: 7px"><div style="width: 11px; height: 11px; border-radius: 50%; background: #3A454C"></div><div style="width: 11px; height: 11px; border-radius: 50%; background: #3A454C"></div><div style="width: 11px; height: 11px; border-radius: 50%; background: #3A454C"></div></div>
-<svg class="i" viewBox="0 0 24 24" style="color: #9AA8B1"><path d="M3.5 7a2 2 0 0 1 2-2h3.5l2 2h7.5a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2h-13a2 2 0 0 1-2-2z"></path></svg>
+<div style="flex: 1 1 340px; min-width: 0; margin-top: 44px; background: #111522; border-radius: 12px; box-shadow: 0 0 0 1px rgba(255,255,255,.1), 0 24px 48px -20px rgba(0,0,0,.7); overflow: hidden">
+<div style="display: flex; align-items: center; gap: 12px; padding: 11px 12px; background: #1E263B; border-bottom: 1px solid rgba(255,255,255,.07)">
+<div style="display: flex; gap: 7px"><div style="width: 11px; height: 11px; border-radius: 50%; background: #536684"></div><div style="width: 11px; height: 11px; border-radius: 50%; background: #536684"></div><div style="width: 11px; height: 11px; border-radius: 50%; background: #536684"></div></div>
+<svg class="i" viewBox="0 0 24 24" style="color: #98A9C4"><path d="M3.5 7a2 2 0 0 1 2-2h3.5l2 2h7.5a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2h-13a2 2 0 0 1-2-2z"></path></svg>
 <div style="font-weight: 600">ShotCubby</div>
 </div>
 <div style="display: flex; flex-direction: column">
 <div class="fr">
 <div class="k2" style="width: 28px; height: 18px; border-radius: 3px; flex: none; aspect-ratio: auto"></div>
-<div class="mono" style="flex: 1; min-width: 0; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; color: #E3E9ED" data-file="0">checkout-empty-cart.png</div>
-<div class="mono" style="color: #7C8A94; flex: none">14:32</div>
+<div class="mono" style="flex: 1; min-width: 0; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; color: #DCE3EF" data-file="0">checkout-empty-cart.png</div>
+<div class="mono" style="color: #98A9C4; flex: none">14:32</div>
 </div>
 <div class="fr">
 <div class="k0" style="width: 28px; height: 18px; border-radius: 3px; flex: none; aspect-ratio: auto"></div>
-<div class="mono" style="flex: 1; min-width: 0; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; color: #E3E9ED" data-file="1">Screenshot 2026-10-08 at 11.04.52.png</div>
-<div class="mono" style="color: #7C8A94; flex: none">11:04</div>
+<div class="mono" style="flex: 1; min-width: 0; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; color: #DCE3EF" data-file="1">Screenshot 2026-10-08 at 11.04.52.png</div>
+<div class="mono" style="color: #98A9C4; flex: none">11:04</div>
 </div>
 <div class="fr">
 <div class="k1" style="width: 28px; height: 18px; border-radius: 3px; flex: none; aspect-ratio: auto"></div>
-<div class="mono" style="flex: 1; min-width: 0; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; color: #E3E9ED" data-file="2">settings-dark-mode.png</div>
-<div class="mono" style="color: #7C8A94; flex: none">Yesterday</div>
+<div class="mono" style="flex: 1; min-width: 0; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; color: #DCE3EF" data-file="2">settings-dark-mode.png</div>
+<div class="mono" style="color: #98A9C4; flex: none">Yesterday</div>
 </div>
 <div class="fr">
 <div class="k0" style="width: 28px; height: 18px; border-radius: 3px; flex: none; aspect-ratio: auto"></div>
-<div class="mono" style="flex: 1; min-width: 0; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; color: #E3E9ED" data-file="3">Screenshot 2026-10-07 at 09.51.13.png</div>
-<div class="mono" style="color: #7C8A94; flex: none">Yesterday</div>
+<div class="mono" style="flex: 1; min-width: 0; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; color: #DCE3EF" data-file="3">Screenshot 2026-10-07 at 09.51.13.png</div>
+<div class="mono" style="color: #98A9C4; flex: none">Yesterday</div>
 </div>
 </div>
-<div style="padding: 8px 12px; font-size: 11px; color: #7C8A94">24 items · Desktop: 0 screenshots</div>
+<div style="padding: 8px 12px; font-size: 11px; color: #98A9C4">24 items · Desktop: 0 screenshots</div>
 </div>
 
-<div style="flex: 0 1 350px; min-width: 260px; background: #14191D; border-radius: 14px; box-shadow: 0 0 0 1px rgba(255,255,255,.12), 0 24px 48px -16px rgba(0,0,0,.8); overflow: hidden">
+<div style="flex: 0 1 350px; min-width: 260px; background: #111522; border-radius: 14px; box-shadow: 0 0 0 1px rgba(255,255,255,.12), 0 24px 48px -16px rgba(0,0,0,.8); overflow: hidden">
 <div style="display: flex; align-items: center; gap: 8px; padding: 12px 14px">
 <svg viewBox="0 0 24 24" style="width: 18px; height: 18px"><path class="gs" d="M3 8V5.5A2.5 2.5 0 0 1 5.5 3H8M16 3h2.5A2.5 2.5 0 0 1 21 5.5V8M21 16v2.5a2.5 2.5 0 0 1-2.5 2.5H16M8 21H5.5A2.5 2.5 0 0 1 3 18.5V16"></path><path class="gs gt" d="M9.5 7.25h5"></path><rect class="gf" x="7" y="9.75" width="10" height="7.25" rx="1.75"></rect></svg>
 <div style="font-weight: 600; font-size: 14px">ShotCubby</div>
-<div class="mono" style="font-size: 11px; color: #9AA8B1; background: rgba(255,255,255,.1); border-radius: 999px; padding: 2px 8px">24</div>
+<div class="mono" style="font-size: 11px; color: #98A9C4; background: rgba(255,255,255,.1); border-radius: 999px; padding: 2px 8px">24</div>
 </div>
 <div style="display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px; padding: 0 14px 14px">
 <div class="sh" style="display: flex; flex-direction: column; gap: 4px; min-width: 0">
@@ -314,8 +314,8 @@ a{color:inherit;text-decoration:none}a:hover{color:inherit}
 <input class="rn" aria-label="Rename screenshot" value="Screenshot 2026-10-07 at 09.51.13" data-i="3" spellcheck="false">
 </div>
 </div>
-<div style="border-top: 1px solid rgba(255,255,255,.08); padding: 10px 14px; display: flex; align-items: center; justify-content: space-between; color: #9AA8B1">
-<div style="display: flex; align-items: center; gap: 8px; color: #F1F5F7"><svg class="i" viewBox="0 0 24 24"><path d="M3.5 7a2 2 0 0 1 2-2h3.5l2 2h7.5a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2h-13a2 2 0 0 1-2-2z"></path></svg>Open Folder</div>
+<div style="border-top: 1px solid rgba(255,255,255,.08); padding: 10px 14px; display: flex; align-items: center; justify-content: space-between; color: #98A9C4">
+<div style="display: flex; align-items: center; gap: 8px; color: #DCE3EF"><svg class="i" viewBox="0 0 24 24"><path d="M3.5 7a2 2 0 0 1 2-2h3.5l2 2h7.5a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2h-13a2 2 0 0 1-2-2z"></path></svg>Open Folder</div>
 <div class="mono" style="font-size: 11px">~/ShotCubby</div>
 </div>
 </div>
@@ -324,7 +324,7 @@ a{color:inherit;text-decoration:none}a:hover{color:inherit}
 </div>
 </div>
 </div>
-<div style="font-size: 14px; color: #9AA8B1; text-align: center">Try it: click a name in the popover and type. It also changes in the search panel above.</div>
+<div style="font-size: 14px; color: #98A9C4; text-align: center">Try it: click a name in the popover and type. It also changes in the search panel above.</div>
 </section>
 
 <section id="shortcuts" style="display: flex; flex-direction: column; align-items: center; gap: 32px; padding: 0 0 104px">
@@ -332,28 +332,28 @@ a{color:inherit;text-decoration:none}a:hover{color:inherit}
 <div class="eye"><span class="m">No new shortcuts</span><span class="w">Familiar shortcuts</span></div>
 <h2 class="m disp" style="margin: 0; font-size: clamp(32px, 4.6vw, 50px)">Same keys. Different destination.</h2>
 <h2 class="w disp" style="margin: 0; font-size: clamp(32px, 4.6vw, 50px)">The Mac shortcuts, on Windows.</h2>
-<p class="m" style="margin: 0; color: #9AA8B1">ShotCubby watches the four shortcuts you already use and redirects the result. It adds one of its own for search.</p>
-<p class="w" style="margin: 0; color: #9AA8B1">ShotCubby brings the Mac screenshot keys to Windows and adds one for search. Every capture goes straight to your ShotCubby folder.</p>
+<p class="m" style="margin: 0; color: #98A9C4">ShotCubby watches the four shortcuts you already use and redirects the result. It adds one of its own for search.</p>
+<p class="w" style="margin: 0; color: #98A9C4">ShotCubby brings the Mac screenshot keys to Windows and adds one for search. Every capture goes straight to your ShotCubby folder.</p>
 </div>
-<div class="m" style="align-self: stretch; overflow-x: auto; background: #12171A; border-radius: 16px; box-shadow: inset 0 0 0 1px rgba(255,255,255,.08)">
+<div class="m" style="align-self: stretch; overflow-x: auto; background: #1E263B; border-radius: 16px; box-shadow: inset 0 0 0 1px rgba(255,255,255,.08)">
 <table class="tb" style="border-collapse: collapse; width: 100%; min-width: 640px; font-size: 15px">
 <thead><tr><th>Shortcut</th><th>macOS default</th><th>With ShotCubby</th></tr></thead>
 <tbody>
-<tr><td><span class="kbd">⌘</span> <span class="kbd">⇧</span> <span class="kbd">3</span></td><td style="color: #9AA8B1">Saves full screen to Desktop</td><td>Moved to <span class="mono" style="font-size: 14px">~/ShotCubby</span></td></tr>
-<tr><td><span class="kbd">⌘</span> <span class="kbd">⇧</span> <span class="kbd">4</span></td><td style="color: #9AA8B1">Saves selection to Desktop</td><td>Moved to <span class="mono" style="font-size: 14px">~/ShotCubby</span></td></tr>
-<tr><td><span class="kbd">⌘</span> <span class="kbd">⇧</span> <span class="kbd">⌃</span> <span class="kbd">3</span></td><td style="color: #9AA8B1">Copies full screen to clipboard</td><td>Clipboard image saved to <span class="mono" style="font-size: 14px">~/ShotCubby</span></td></tr>
-<tr><td><span class="kbd">⌘</span> <span class="kbd">⇧</span> <span class="kbd">⌃</span> <span class="kbd">4</span></td><td style="color: #9AA8B1">Copies selection to clipboard</td><td>Clipboard image saved to <span class="mono" style="font-size: 14px">~/ShotCubby</span></td></tr>
-<tr><td><span class="kbd">⌘</span> <span class="kbd">/</span></td><td style="color: #9AA8B1">Nothing</td><td>Opens quick search <span class="mono" style="font-size: 12px; color: #9AA8B1">· customizable</span></td></tr>
+<tr><td><span class="kbd">⌘</span> <span class="kbd">⇧</span> <span class="kbd">3</span></td><td style="color: #98A9C4">Saves full screen to Desktop</td><td>Moved to <span class="mono" style="font-size: 14px">~/ShotCubby</span></td></tr>
+<tr><td><span class="kbd">⌘</span> <span class="kbd">⇧</span> <span class="kbd">4</span></td><td style="color: #98A9C4">Saves selection to Desktop</td><td>Moved to <span class="mono" style="font-size: 14px">~/ShotCubby</span></td></tr>
+<tr><td><span class="kbd">⌘</span> <span class="kbd">⇧</span> <span class="kbd">⌃</span> <span class="kbd">3</span></td><td style="color: #98A9C4">Copies full screen to clipboard</td><td>Clipboard image saved to <span class="mono" style="font-size: 14px">~/ShotCubby</span></td></tr>
+<tr><td><span class="kbd">⌘</span> <span class="kbd">⇧</span> <span class="kbd">⌃</span> <span class="kbd">4</span></td><td style="color: #98A9C4">Copies selection to clipboard</td><td>Clipboard image saved to <span class="mono" style="font-size: 14px">~/ShotCubby</span></td></tr>
+<tr><td><span class="kbd">⌘</span> <span class="kbd">/</span></td><td style="color: #98A9C4">Nothing</td><td>Opens quick search <span class="mono" style="font-size: 12px; color: #98A9C4">· customizable</span></td></tr>
 </tbody>
 </table>
 </div>
-<div class="w" style="align-self: stretch; overflow-x: auto; background: #12171A; border-radius: 16px; box-shadow: inset 0 0 0 1px rgba(255,255,255,.08)">
+<div class="w" style="align-self: stretch; overflow-x: auto; background: #1E263B; border-radius: 16px; box-shadow: inset 0 0 0 1px rgba(255,255,255,.08)">
 <table class="tb" style="border-collapse: collapse; width: 100%; min-width: 560px; font-size: 15px">
 <thead><tr><th>Shortcut</th><th>What it does</th><th>Where it goes</th></tr></thead>
 <tbody>
-<tr><td><span class="kbd">Alt</span> <span class="kbd">Shift</span> <span class="kbd">3</span></td><td>Captures the full screen</td><td style="color: #9AA8B1">Saved to your ShotCubby folder</td></tr>
-<tr><td><span class="kbd">Alt</span> <span class="kbd">Shift</span> <span class="kbd">4</span></td><td>Captures a selection</td><td style="color: #9AA8B1">Saved to your ShotCubby folder</td></tr>
-<tr><td><span class="kbd">Ctrl</span> <span class="kbd">/</span></td><td>Opens quick search</td><td style="color: #9AA8B1">Customizable in Settings</td></tr>
+<tr><td><span class="kbd">Alt</span> <span class="kbd">Shift</span> <span class="kbd">3</span></td><td>Captures the full screen</td><td style="color: #98A9C4">Saved to your ShotCubby folder</td></tr>
+<tr><td><span class="kbd">Alt</span> <span class="kbd">Shift</span> <span class="kbd">4</span></td><td>Captures a selection</td><td style="color: #98A9C4">Saved to your ShotCubby folder</td></tr>
+<tr><td><span class="kbd">Ctrl</span> <span class="kbd">/</span></td><td>Opens quick search</td><td style="color: #98A9C4">Customizable in Settings</td></tr>
 </tbody>
 </table>
 </div>
@@ -381,8 +381,8 @@ a{color:inherit;text-decoration:none}a:hover{color:inherit}
 
 <div class="card wide">
 <div class="eye" style="padding-bottom: 6px">Rename in place · by hand or by AI</div>
-<div style="background: #0A0D0F; border-radius: 10px; box-shadow: inset 0 0 0 1px rgba(255,255,255,.08); padding: 16px 18px; display: flex; flex-direction: column; gap: 8px; margin-bottom: 10px">
-<div class="mono" style="font-size: 13px; color: #7C8A94; text-decoration: line-through; overflow-wrap: anywhere">Screenshot 2026-10-08 at 14.32.07.png</div>
+<div style="background: #111522; border-radius: 10px; box-shadow: inset 0 0 0 1px rgba(255,255,255,.08); padding: 16px 18px; display: flex; flex-direction: column; gap: 8px; margin-bottom: 10px">
+<div class="mono" style="font-size: 13px; color: #98A9C4; text-decoration: line-through; overflow-wrap: anywhere">Screenshot 2026-10-08 at 14.32.07.png</div>
 <div class="mono" style="font-size: 19px; font-weight: 500; overflow-wrap: anywhere"><span id="last-file">checkout-empty-cart.png</span></div>
 </div>
 <h3>Name it while you still know what it is</h3>
@@ -391,9 +391,9 @@ a{color:inherit;text-decoration:none}a:hover{color:inherit}
 
 <div class="card">
 <div style="display: flex; gap: 6px; padding-bottom: 10px">
-<div style="width: 34px; height: 34px; border-radius: 8px; background: #1F272C; display: flex; align-items: center; justify-content: center"><svg class="i" viewBox="0 0 24 24"><rect x="8.5" y="8.5" width="11" height="11" rx="2.5"></rect><path d="M15.5 5.5v-.5a2 2 0 0 0-2-2H6.5a2 2 0 0 0-2 2v7a2 2 0 0 0 2 2h.5"></path></svg></div>
-<div style="width: 34px; height: 34px; border-radius: 8px; background: #1F272C; display: flex; align-items: center; justify-content: center"><svg class="i" viewBox="0 0 24 24"><path d="M3.5 7a2 2 0 0 1 2-2h3.5l2 2h7.5a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2h-13a2 2 0 0 1-2-2z"></path></svg></div>
-<div style="width: 34px; height: 34px; border-radius: 8px; background: #1F272C; display: flex; align-items: center; justify-content: center"><svg class="i" viewBox="0 0 24 24"><path d="M4.5 7h15M9.5 7V5a1 1 0 0 1 1-1h3a1 1 0 0 1 1 1v2M6.5 7l.8 11a2 2 0 0 0 2 1.9h5.4a2 2 0 0 0 2-1.9l.8-11"></path></svg></div>
+<div style="width: 34px; height: 34px; border-radius: 8px; background: #303D59; display: flex; align-items: center; justify-content: center"><svg class="i" viewBox="0 0 24 24"><rect x="8.5" y="8.5" width="11" height="11" rx="2.5"></rect><path d="M15.5 5.5v-.5a2 2 0 0 0-2-2H6.5a2 2 0 0 0-2 2v7a2 2 0 0 0 2 2h.5"></path></svg></div>
+<div style="width: 34px; height: 34px; border-radius: 8px; background: #303D59; display: flex; align-items: center; justify-content: center"><svg class="i" viewBox="0 0 24 24"><path d="M3.5 7a2 2 0 0 1 2-2h3.5l2 2h7.5a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2h-13a2 2 0 0 1-2-2z"></path></svg></div>
+<div style="width: 34px; height: 34px; border-radius: 8px; background: #303D59; display: flex; align-items: center; justify-content: center"><svg class="i" viewBox="0 0 24 24"><path d="M4.5 7h15M9.5 7V5a1 1 0 0 1 1-1h3a1 1 0 0 1 1 1v2M6.5 7l.8 11a2 2 0 0 0 2 1.9h5.4a2 2 0 0 0 2-1.9l.8-11"></path></svg></div>
 </div>
 <h3>Hover actions</h3>
 <p>Copy, reveal in <span class="m">Finder</span><span class="w">File Explorer</span> or delete, right from the thumbnail.</p>
@@ -412,23 +412,23 @@ a{color:inherit;text-decoration:none}a:hover{color:inherit}
 </div>
 
 <div class="card">
-<div class="eye" style="color: #9AA8B1; padding-bottom: 2px">Privacy</div>
+<div class="eye" style="color: #98A9C4; padding-bottom: 2px">Privacy</div>
 <div>
-<div class="kv"><span style="color: #9AA8B1">Telemetry</span><span class="mono">None</span></div>
-<div class="kv"><span style="color: #9AA8B1">Account required</span><span class="mono">No</span></div>
-<div class="kv"><span style="color: #9AA8B1">AI naming</span><span class="mono" style="color: #35D6E6">Opt-in, your key</span></div>
-<div class="kv"><span style="color: #9AA8B1">Works offline</span><span class="mono" style="color: #35D6E6">Yes, without AI</span></div>
+<div class="kv"><span style="color: #98A9C4">Telemetry</span><span class="mono">None</span></div>
+<div class="kv"><span style="color: #98A9C4">Account required</span><span class="mono">No</span></div>
+<div class="kv"><span style="color: #98A9C4">AI naming</span><span class="mono" style="color: #98A9C4">Opt-in, your key</span></div>
+<div class="kv"><span style="color: #98A9C4">Works offline</span><span class="mono" style="color: #98A9C4">Yes, without AI</span></div>
 </div>
 </div>
 
 <div class="m card">
-<div style="width: 34px; height: 34px; border-radius: 50%; background: rgba(53,214,230,.14); color: #35D6E6; display: flex; align-items: center; justify-content: center; margin-bottom: 10px"><svg class="i" viewBox="0 0 24 24"><path d="M5 12.5l4.5 4.5L19 7.5"></path></svg></div>
+<div style="width: 34px; height: 34px; border-radius: 50%; background: rgba(152,169,196,.14); color: #98A9C4; display: flex; align-items: center; justify-content: center; margin-bottom: 10px"><svg class="i" viewBox="0 0 24 24"><path d="M5 12.5l4.5 4.5L19 7.5"></path></svg></div>
 <h3>Signed and notarized</h3>
 <p>Developer ID build notarized by Apple. No Gatekeeper warnings.</p>
 </div>
 
 <div class="m card" style="grid-column: 1 / -1">
-<div class="eye" style="color: #9AA8B1; padding-bottom: 2px">Under the hood</div>
+<div class="eye" style="color: #98A9C4; padding-bottom: 2px">Under the hood</div>
 <h3>Native and light</h3>
 <p>Swift 5.9, SwiftUI and AppKit with zero external dependencies. FSEvents watches your screenshot folder and the clipboard is checked every 0.8 s, so a capture is caught either way.</p>
 </div>
@@ -457,12 +457,12 @@ a{color:inherit;text-decoration:none}a:hover{color:inherit}
 </section>
 
 </main>
-<footer style="display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 16px; padding: 28px 0 40px; border-top: 1px solid rgba(255,255,255,.07); font-size: 14px; color: #9AA8B1">
+<footer style="display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 16px; padding: 28px 0 40px; border-top: 1px solid rgba(255,255,255,.07); font-size: 14px; color: #98A9C4">
 <div style="display: flex; flex-wrap: wrap; gap: 8px 22px">
 <a href="#ai">AI naming</a><a href="#features">Features</a><a href="#top">Download</a><a href="https://github.com/Nelahia/shotcubby" rel="noopener">ShotCubby on GitHub</a><a href="https://github.com/Nelahia/shotcubby/releases" rel="noopener">Release notes</a><a href="https://github.com/Nelahia" rel="noopener">Nelahia</a>
 </div>
-<div class="m mono" style="font-size: 12px; color: #7C8A94">ShotCubby · Swift 5.9 · SwiftUI · AppKit</div>
-<div class="w mono" style="font-size: 12px; color: #7C8A94">ShotCubby · Tauri · Rust</div>
+<div class="m mono" style="font-size: 12px; color: #98A9C4">ShotCubby · Swift 5.9 · SwiftUI · AppKit</div>
+<div class="w mono" style="font-size: 12px; color: #98A9C4">ShotCubby · Tauri · Rust</div>
 </footer>
 
 </div>
@@ -500,7 +500,7 @@ a{color:inherit;text-decoration:none}a:hover{color:inherit}
       b.appendChild(el('div', 'p' + a[3], 'width:52px;height:39px;flex:none;border-radius:5px;box-shadow:inset 0 0 0 1px rgba(255,255,255,.08)'));
       var t = el('div', '', 'min-width:0;display:flex;flex-direction:column;gap:2px');
       t.appendChild(el('div', '', 'font-weight:500;white-space:nowrap;overflow:hidden;text-overflow:ellipsis', a[0]));
-      t.appendChild(el('div', 'mono', 'font-size:11px;color:#9AA8B1', a[1]));
+      t.appendChild(el('div', 'mono', 'font-size:11px;color:#98A9C4', a[1]));
       b.appendChild(t);
       b.addEventListener('click', function () { sel = i; renderSpot(); });
       rows.appendChild(b);
